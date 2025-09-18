@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-llendes</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
+    header { background: #111; color: #fff; padding: 60px 20px; }
+    h1 { font-size: 2.5rem; }
+    p { font-size: 1.2rem; color: #ccc; }
+    .cta { margin-top: 20px; }
+    .cta a { background: #ff4a57; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; }
+    footer { background: #222; color: #aaa; padding: 20px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI-llendes</h1>
+    <p>Smart automation & lead systems powered by AI.</p>
+    <div class="cta">
+      <a href="mailto:hello@ai-llendes.org">Get in Touch</a>
+    </div>
+  </header>
+  <footer>
+    &copy; 2025 AI-llendes. All rights reserved.
+  </footer>
+</body>
+</html>
