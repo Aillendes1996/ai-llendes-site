@@ -1,21 +1,12 @@
-/* ---------- Base ---------- */
+/* ===== Base / Tokens ===== */
 :root{
-  --bg:#f8fafc;
-  --bg2:#eef2ff;
-  --surface:#ffffff;
-  --text:#1e293b;
-  --muted:#64748b;
-  --blue:#2563eb;     /* primary */
-  --pink:#f43f5e;     /* accent */
-  --teal:#10b981;
-  --amber:#f59e0b;
+  --bg:#f8fafc; --bg2:#eef2ff; --surface:#ffffff;
+  --text:#1e293b; --muted:#64748b;
+  --blue:#2563eb; --pink:#f43f5e; --teal:#10b981; --amber:#f59e0b;
   --ring:0 0 0 3px rgba(37,99,235,.25);
   --shadow:0 10px 30px rgba(2,6,23,.06);
-  --radius:16px;
-  --radius-sm:12px;
-  --max:1140px;
+  --radius:16px; --radius-sm:12px; --max:1140px;
 }
-
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -24,125 +15,96 @@ body{
   background:linear-gradient(180deg,var(--bg),var(--bg2));
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
-
-a{color:var(--blue);text-decoration:none}
-a:hover{text-decoration:underline}
-
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
 .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+ul{margin:0;padding:0} /* prevent stray bullets */
 
-/* ---------- Buttons ---------- */
+/* ===== Buttons ===== */
 .btn{
-  --bg:var(--blue); --fg:#fff;
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:12px 16px; border-radius:12px; font-weight:700; border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 16px;border-radius:12px;font-weight:700;border:1px solid transparent;
   box-shadow:0 6px 14px rgba(37,99,235,.18);
 }
-.btn:hover{filter:brightness(.98)}
-.btn:focus-visible{outline:none; box-shadow:var(--ring)}
-.btn--primary{background:linear-gradient(135deg,var(--blue),#60a5fa); color:#fff}
-.btn--ghost{background:#fff; border:1px solid rgba(2,6,23,.08); color:var(--text)}
-.btn--lg{padding:14px 20px; font-size:18px}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn--primary{background:linear-gradient(135deg,var(--blue),#60a5fa);color:#fff}
+.btn--ghost{background:#fff;border:1px solid rgba(2,6,23,.08);color:var(--text)}
+.btn--lg{padding:14px 20px;font-size:18px}
 .btn--full{width:100%}
 
-/* ---------- Nav ---------- */
-.nav{
-  position:sticky;top:0;z-index:40;
-  background:#ffffffcc; backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(2,6,23,.06);
-}
+/* ===== Nav ===== */
+.nav{position:sticky;top:0;z-index:40;background:#ffffffcc;backdrop-filter:blur(10px);border-bottom:1px solid rgba(2,6,23,.06)}
 .nav__inner{display:flex;align-items:center;justify-content:space-between;min-height:64px}
 .brand{display:flex;gap:10px;align-items:center;font-weight:800;color:var(--text)}
 .brand__bolt{font-size:20px}
 .nav__links{display:flex;gap:16px;align-items:center}
-.nav__links a{color:var(--text);font-weight:600}
-.nav__links a:hover{color:var(--blue)}
+.nav__links a{color:var(--text);font-weight:600} .nav__links a:hover{color:var(--blue)}
 
-/* ---------- Hero ---------- */
+/* ===== Hero ===== */
 .hero{padding:64px 0}
 .hero__grid{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center}
 .hero__copy h1{font-size:clamp(36px,5vw,56px);margin:0 0 10px;font-weight:800}
 .lead{font-size:18px;color:#334155;margin:0 0 18px}
 .hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
-.bullets{list-style:none;padding:0;margin:12px 0 0;color:var(--muted)}
-.bullets li{margin:6px 0}
+.bullets{list-style:none;color:var(--muted)} .bullets li{margin:6px 0}
 
-/* Viz */
+/* viz */
 .hero__viz{position:relative}
-.stat{
-  background:#fff;border:1px solid rgba(2,6,23,.06);border-radius:16px;padding:18px;box-shadow:var(--shadow);
-  max-width:240px;margin:0 0 16px
-}
+.stat{background:#fff;border:1px solid rgba(2,6,23,.06);border-radius:16px;padding:18px;box-shadow:var(--shadow);max-width:240px;margin:0 0 16px}
 .stat__value{font-size:34px;font-weight:800;color:var(--blue)}
 .stat__label{color:var(--muted);font-weight:600}
 .chat{background:#fff;border:1px solid rgba(2,6,23,.06);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
 .bubble{border-radius:16px;padding:10px 12px;margin:8px 0;display:inline-block;max-width:100%}
-.bubble--in{background:rgba(37,99,235,.1);color:#1e40af}
-.bubble--out{background:rgba(244,63,94,.1);color:#9f1239}
+.bubble--in{background:rgba(37,99,235,.12);color:#1e40af}
+.bubble--out{background:rgba(244,63,94,.12);color:#9f1239}
 
-/* ---------- Sections ---------- */
+/* ===== Sections / Cards ===== */
 .section{padding:72px 0}
-.section--surface{background:linear-gradient(180deg,#ffffff, #f1f5f9)}
+.section--surface{background:linear-gradient(180deg,#ffffff,#f1f5f9)}
 .section__title{margin:0 0 8px;font-size:clamp(26px,4vw,40px);font-weight:800}
-.muted{color:var(--muted)}
-.small{font-size:14px}
-.tiny{font-size:12px}
-
-/* Grid & cards */
+.muted{color:var(--muted)} .small{font-size:14px} .tiny{font-size:12px}
 .grid{display:grid;gap:18px}
 .grid--2{grid-template-columns:repeat(2,1fr)}
 .grid--3{grid-template-columns:repeat(3,1fr)}
-
-.card{
-  background:var(--surface); border:1px solid rgba(2,6,23,.06);
-  border-radius:12px; padding:20px; box-shadow:var(--shadow)
-}
+.card{background:var(--surface);border:1px solid rgba(2,6,23,.06);border-radius:12px;padding:20px;box-shadow:var(--shadow)}
 .card h3{margin:0 0 8px}
 
-/* Commitments list */
-.list{list-style:none;margin:0;padding:0}
+/* ===== Commitments ===== */
+.list{list-style:none}
 .list--commitments{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .list--commitments li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid rgba(2,6,23,.06);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
-.list--commitments .icon{font-size:22px;line-height:1}
+.list--commitments .icon,.commit-icon{font-size:22px;line-height:1}
 
-/* Stats strip */
+/* ===== Stats strip ===== */
 .stats{padding:40px 0;background:linear-gradient(90deg,#dbeafe,#fce7f3)}
 .stats__row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .stats__item{text-align:center;background:#ffffffaa;border:1px solid rgba(2,6,23,.06);border-radius:12px;padding:14px}
 .stats__value{font-weight:800;font-size:28px;color:#1e40af}
 .stats__label{color:#334155}
 
-/* Accordion */
+/* ===== Accordion ===== */
 .accordion{max-width:900px;margin:18px auto 0}
 .acc{background:#fff;border:1px solid rgba(2,6,23,.08);border-radius:12px;margin:10px 0;box-shadow:var(--shadow)}
-.acc__btn{
-  width:100%;text-align:left;background:transparent;border:0;display:flex;justify-content:space-between;align-items:center;
-  padding:14px 16px;font-weight:700;color:var(--text);cursor:pointer
-}
+.acc__btn{width:100%;text-align:left;background:transparent;border:0;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-weight:700;color:var(--text);cursor:pointer}
 .acc__btn:focus-visible{outline:none;box-shadow:var(--ring)}
 .acc__panel{display:none;padding:0 16px 16px;color:#334155}
 .acc__btn[aria-expanded="true"] + .acc__panel{display:block}
 .chev{opacity:.6}
 
-/* Booking form */
-.booking .form{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0
-}
+/* ===== Booking ===== */
+.booking .form{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
 .booking .form .full{grid-column:1/-1}
 label span{display:block;font-weight:600;margin:0 0 6px}
-input,textarea{
-  width:100%;padding:12px;border-radius:10px;border:1px solid rgba(2,6,23,.12);background:#fff;color:var(--text)
-}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(2,6,23,.12);background:#fff;color:var(--text)}
 input:focus-visible,textarea:focus-visible{outline:none;box-shadow:var(--ring)}
 .status{min-height:22px;margin-top:8px}
-.status.success{color:#065f46}
-.status.error{color:#991b1b}
+.status.success{color:#065f46} .status.error{color:#991b1b}
 
-/* Footer */
+/* ===== Footer ===== */
 .footer{padding:40px 0 56px;border-top:1px solid rgba(2,6,23,.08);background:#f8fafc}
 .footer__inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .footer__links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 
-/* ---------- Responsive ---------- */
+/* ===== Responsive ===== */
 @media (max-width:1020px){
   .hero__grid{grid-template-columns:1fr}
   .grid--3{grid-template-columns:repeat(2,1fr)}
