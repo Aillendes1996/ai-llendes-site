@@ -17,7 +17,7 @@ body{
 }
 a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
 .container{max-width:var(--max);margin:0 auto;padding:0 20px}
-ul{margin:0;padding:0} /* prevent stray bullets */
+ul{margin:0;padding:0}
 
 /* ===== Buttons ===== */
 .btn{
@@ -38,6 +38,12 @@ ul{margin:0;padding:0} /* prevent stray bullets */
 .brand__bolt{font-size:20px}
 .nav__links{display:flex;gap:16px;align-items:center}
 .nav__links a{color:var(--text);font-weight:600} .nav__links a:hover{color:var(--blue)}
+.lang-switch{display:flex;gap:6px;margin-left:8px}
+.lang-switch button{
+  font:inherit;border:1px solid rgba(2,6,23,.1);background:#fff;color:var(--text);
+  padding:6px 8px;border-radius:8px;cursor:pointer
+}
+.lang-switch button.active{background:#e0ecff;border-color:#c7dbff}
 
 /* ===== Hero ===== */
 .hero{padding:64px 0}
@@ -112,9 +118,11 @@ input:focus-visible,textarea:focus-visible{outline:none;box-shadow:var(--ring)}
   .stats__row{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:640px){
-  .nav__links{display:none}
+  .nav__links{gap:10px}
   .grid--2,.grid--3{grid-template-columns:1fr}
   .booking .form{grid-template-columns:1fr}
   .btn--lg{font-size:16px}
 }
+
+
 
