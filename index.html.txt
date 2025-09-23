@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Speed‑To‑Lead Automation</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link id="fontLoader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+	<link rel="stylesheet" href="styles.css" />
+	<meta name="description" content="We reply in seconds and book calls on autopilot. Speed‑to‑Lead automation that turns new leads into booked meetings while you sleep." />
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<div class="brand">
+				<div class="logo">⚡</div>
+				<div class="brand-text">
+					<h1 class="brand-title">Speed‑To‑Lead Automation</h1>
+					<p class="brand-subtitle">Replies in seconds. Calls booked on autopilot.</p>
+				</div>
+			</div>
+
+			<nav class="quick-actions" aria-label="Quick actions">
+				<button class="btn btn-ghost" data-scroll="#faq">FAQ</button>
+				<button class="btn btn-ghost" data-open="credentialsModal">Credentials</button>
+				<button class="btn btn-ghost" data-open="infoModal">Our Info</button>
+				<a class="btn btn-primary" href="#book" data-scroll="#book">Book a Call</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container hero-inner">
+				<div class="hero-copy">
+					<h2>Respond to every new lead in under 60 seconds</h2>
+					<p>We capture inbound leads, engage via SMS/email/WhatsApp instantly, and drive them to your calendar—24/7—so you never lose another hot lead.</p>
+					<div class="hero-cta">
+						<a class="btn btn-primary btn-lg" data-scroll="#book" href="#book">Get More Booked Calls</a>
+						<button class="btn btn-outline btn-lg" data-scroll="#what">See How It Works</button>
+					</div>
+					<ul class="trust-list">
+						<li>Avg first response < 30s</li>
+						<li>Show‑up rates 20–40% higher</li>
+						<li>Works with your CRM and ads</li>
+					</ul>
+				</div>
+				<div class="hero-media">
+					<div class="stat-card">
+						<div class="stat-value">+38%</div>
+						<div class="stat-label">More booked calls</div>
+					</div>
+					<div class="screen-mock">
+						<div class="bubble left">New lead captured ✅</div>
+						<div class="bubble right">Hi! Ready to chat this week?</div>
+						<div class="bubble left">Great — calendar link below 📅</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="what" class="section">
+			<div class="container">
+				<h3 class="section-title">What we do</h3>
+				<div class="grid three">
+					<div class="card">
+						<h4>Instant Lead Outreach</h4>
+						<p>Auto‑respond across SMS, email, and WhatsApp within seconds of form fills, DMs, or inbound calls.</p>
+					</div>
+					<div class="card">
+						<h4>2‑Way Nurture</h4>
+						<p>Human‑like sequences that qualify, answer FAQs, and overcome objections—no manual chasing.</p>
+					</div>
+					<div class="card">
+						<h4>Autopilot Booking</h4>
+						<p>Pushes qualified leads to your calendar, handles reminders and rescheduling automatically.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section surface">
+			<div class="container">
+				<h3 class="section-title">Our commitments</h3>
+				<ul class="commitments">
+					<li>
+						<div class="commit-icon">⚡</div>
+						<div>
+							<h5>Sub‑60s First Touch</h5>
+							<p>Every qualified lead hears from you in under a minute, 24/7.</p>
+						</div>
+					</li>
+					<li>
+						<div class="commit-icon">🤝</div>
+						<div>
+							<h5>White‑Glove Setup</h5>
+							<p>We integrate with your CRM, ads, and calendar—done for you.</p>
+						</div>
+					</li>
+					<li>
+						<div class="commit-icon">📈</div>
+						<div>
+							<h5>Revenue‑First</h5>
+							<p>Optimized for booked revenue calls, not just replies.</p>
+						</div>
+					</li>
+					<li>
+						<div class="commit-icon">🔒</div>
+						<div>
+							<h5>Privacy & Compliance</h5>
+							<p>Consent‑aware messaging with clear opt‑outs and data controls.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="section" id="provide">
+			<div class="container">
+				<h3 class="section-title">What we provide</h3>
+				<div class="grid three">
+					<div class="card list-card">
+						<h4>Deliverables</h4>
+						<ul>
+							<li>Lead capture connectors and parsing</li>
+							<li>Omni‑channel reply sequences</li>
+							<li>Calendar routing & reminders</li>
+							<li>Dashboard & reporting</li>
+							<li>CRM + ad platform integrations</li>
+						</ul>
+					</div>
+					<div class="card list-card">
+						<h4>Integrations</h4>
+						<ul>
+							<li>Calendly/Cal.com, Google/Outlook</li>
+							<li>HubSpot, Salesforce, Pipedrive</li>
+							<li>Meta/Google Ads lead forms</li>
+							<li>Web forms, Typeform, Zapier</li>
+						</ul>
+					</div>
+					<div class="card list-card">
+						<h4>Support</h4>
+						<ul>
+							<li>Onboarding in 7–10 days</li>
+							<li>Ongoing optimization</li>
+							<li>SLA on responsiveness</li>
+							<li>Quarterly strategy reviews</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="faq" class="section surface">
+			<div class="container">
+				<h3 class="section-title">FAQ</h3>
+				<div class="accordion" id="faqAccordion">
+					<div class="accordion-item">
+						<button class="accordion-trigger" aria-expanded="false">
+							How fast are replies really?
+							<span class="chev">▸</span>
+						</button>
+						<div class="accordion-panel">
+							<p>We target 15–60 seconds from capture to first message, 24/7. Most clients see ~30 seconds.</p>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<button class="accordion-trigger" aria-expanded="false">
+							Will this work with my existing tools?
+							<span class="chev">▸</span>
+						</button>
+						<div class="accordion-panel">
+							<p>Yes—CRMs, calendars, forms, and ad platforms. If you have an API or Zapier, we can connect.</p>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<button class="accordion-trigger" aria-expanded="false">
+							How do you handle compliance and opt‑outs?
+							<span class="chev">▸</span>
+						</button>
+						<div class="accordion-panel">
+							<p>We include consent capture, clear opt‑out flows, and respect regional regulations.</p>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<button class="accordion-trigger" aria-expanded="false">
+							What does onboarding look like?
+							<span class="chev">▸</span>
+						</button>
+						<div class="accordion-panel">
+							<p>Strategy call, workflows defined, integrations connected, sequences launched—typically in 7–10 days.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="faq-cta">
+					<button class="btn btn-outline" data-open="credentialsModal">See Credentials</button>
+					<button class="btn btn-primary" data-scroll="#book">Book a Call</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="book" class="section">
+			<div class="container">
+				<h3 class="section-title">Book a call</h3>
+				<p class="muted">Pick a time that works, or leave your info and we’ll confirm via SMS/email.</p>
+
+				<div class="grid two booking-grid">
+					<div class="card">
+						<h4>Direct calendar link</h4>
+						<p>Already ready? Jump straight to the calendar.</p>
+						<a class="btn btn-primary" id="openCalendar" href="#" rel="noopener">Open Calendar</a>
+						<p class="muted small">Replace the link in `app.js` with your Calendly/Cal.com URL.</p>
+					</div>
+
+					<div class="card">
+						<h4>Request a booking</h4>
+						<form id="bookingForm" novalidate>
+							<div class="form-grid">
+								<label>
+									<span>Name</span>
+									<input type="text" name="name" required />
+								</label>
+								<label>
+									<span>Email</span>
+									<input type="email" name="email" required />
+								</label>
+								<label>
+									<span>Phone</span>
+									<input type="tel" name="phone" required />
+								</label>
+								<label>
+									<span>Company</span>
+									<input type="text" name="company" />
+								</label>
+								<label class="full">
+									<span>What are you looking to improve?</span>
+									<textarea name="notes" rows="4" placeholder="Speed‑to‑lead, show rates, pipeline..." ></textarea>
+								</label>
+							</div>
+							<button type="submit" class="btn btn-primary btn-full">Request a Time</button>
+							<p id="bookingStatus" class="status"></p>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<div>
+				<strong>Speed‑To‑Lead Automation</strong>
+				<p class="muted">We reply in seconds and book calls on autopilot.</p>
+			</div>
+			<div class="footer-actions">
+				<button class="btn btn-ghost" data-open="infoModal">Company Info</button>
+				<a class="btn btn-outline" href="#faq" data-scroll="#faq">FAQ</a>
+				<a class="btn btn-primary" href="#book" data-scroll="#book">Book a Call</a>
+			</div>
+		</div>
+	</footer>
+
+	<div class="modal" id="credentialsModal" aria-hidden="true">
+		<div class="modal-backdrop" data-close="credentialsModal"></div>
+		<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="credentialsTitle">
+			<header class="modal-header">
+				<h4 id="credentialsTitle">Credentials</h4>
+				<button class="icon-btn" data-close="credentialsModal" aria-label="Close">✕</button>
+			</header>
+			<div class="modal-body">
+				<ul class="credentials">
+					<li><strong>Partners:</strong> HubSpot, Zapier, Cal.com</li>
+					<li><strong>Experience:</strong> 300+ automations shipped</li>
+					<li><strong>Industries:</strong> Home services, SaaS, local, B2B</li>
+					<li><strong>Compliance:</strong> Consent, TCPA-aware flows, data retention controls</li>
+				</ul>
+			</div>
+			<footer class="modal-footer">
+				<button class="btn btn-outline" data-close="credentialsModal">Close</button>
+				<button class="btn btn-primary" data-scroll="#book" data-close="credentialsModal">Book a Call</button>
+			</footer>
+		</div>
+	</div>
+
+	<div class="modal" id="infoModal" aria-hidden="true">
+		<div class="modal-backdrop" data-close="infoModal"></div>
+		<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+			<header class="modal-header">
+				<h4 id="infoTitle">Our Information</h4>
+				<button class="icon-btn" data-close="infoModal" aria-label="Close">✕</button>
+			</header>
+			<div class="modal-body">
+				<div class="info-grid">
+					<div>
+						<h5>Contact</h5>
+						<p><strong>Email:</strong> hello@yourdomain.com</p>
+						<p><strong>Phone:</strong> +1 (555) 123‑4567</p>
+					</div>
+					<div>
+						<h5>Availability</h5>
+						<p>Mon–Fri, 9am–6pm (Your TZ)</p>
+						<p>Global clients welcome</p>
+					</div>
+					<div>
+						<h5>Locations</h5>
+						<p>Remote‑first</p>
+						<p>Offices: City, Country</p>
+					</div>
+				</div>
+			</div>
+			<footer class="modal-footer">
+				<button class="btn btn-outline" data-close="infoModal">Close</button>
+				<a class="btn btn-primary" href="#book" data-scroll="#book" data-close="infoModal">Book a Call</a>
+			</footer>
+		</div>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+</html>
