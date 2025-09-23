@@ -1,211 +1,80 @@
-(function(){
-	// Attempts multiple filenames so you can use Design.json or Design.json.txt
-	const DESIGN_CANDIDATES = ['Design.json', 'Design.json.txt'];
+/* ================== CONFIG ================== */
+const CALENDAR_URL = "https://calendly.com/aillendes1996/30min";          // your calendar
+const N8N_WEBHOOK  = "https://n8n.ai-llendes.org/webhook/lead-intake";    // "" to disable
 
-	document.addEventListener('DOMContentLoaded', () => {
-		loadDesign();
-		setupSmoothScroll();
-		setupAccordion();
-		setupModals();
-		setupBookingForm();
-		setupCalendarLink();
-	});
+/* ================== UTILITIES ================== */
+// smooth scroll for any element with [data-scroll] or standard anchor within page
+document.querySelectorAll('[data-scroll], a[href^="#"]').forEach(el => {
+  el.addEventListener("click", e => {
+    const href = el.getAttribute("data-scroll") || el.getAttribute("href");
+    if (!href || href === "#") return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
 
-	async function loadDesign(){
-		for(const name of DESIGN_CANDIDATES){
-			try{
-				const res = await fetch(name, { cache:'no-store' });
-				if(!res.ok) throw new Error('not ok');
-				const design = await res.json();
-				applyDesignFromSchema(design);
-				applyTypography(design);
-				return;
-			}catch(e){}
-		}
-	}
+// current year in footer
+document.getElementById("year").textContent = new Date().getFullYear();
 
-	// Map your provided schema -> CSS custom properties used by the UI
-	function applyDesignFromSchema(schema){
-		const t = schema.theme || {};
-		const bg = t.background || {};
-		const tx = t.text || {};
-		const borders = (t.borders || {});
-		const radius = borders.radius || {};
-		const shadows = t.shadows || {};
-		const comps = schema.components || {};
-		const hero = comps.hero || {};
-		const cards = comps.cards || {};
-		const stats = comps.stats || {};
-		const faq = comps.faq || {};
-		const contact = comps.contact || {};
-		const navbar = comps.navbar || {};
-		const footer = comps.footer || {};
-		const layout = schema.layout || {};
-		const grid = layout.grid || {};
-		const section = layout.section || {};
-		const container = layout.container || {};
+/* ================== HERO / BOOKING ================== */
+const calBtn = document.getElementById("openCalendar");
+if (calBtn) calBtn.href = CALENDAR_URL;
 
-		const set = (k,v)=>{ if(v!=null) document.documentElement.style.setProperty(k,String(v)); };
+/* ================== ACCORDION ================== */
+document.querySelectorAll(".acc__btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    // close others
+    document.querySelectorAll(".acc__btn[aria-expanded='true']").forEach(b => {
+      if (b !== btn) b.setAttribute("aria-expanded", "false");
+    });
+    // toggle this
+    btn.setAttribute("aria-expanded", String(!expanded));
+  });
+});
 
-		// Global colors
-		set('--color-bg', bg.primary || '#f8fafc');
-		set('--color-bg-secondary', bg.secondary || 'linear-gradient(180deg, #f8fafc, #eef2ff)');
-		set('--color-card', bg.card || '#ffffff');
-		set('--color-text', tx.primary || '#1e293b');
-		set('--color-muted', tx.muted || '#64748b');
-		set('--color-primary', tx.accent || '#2563eb');
-		set('--color-primary-contrast', '#ffffff');
+/* ================== BOOKING FORM ================== */
+const form = document.getElementById("bookingForm");
+const statusEl = document.getElementById("bookingStatus");
 
-		// Radii and borders
-		if (radius.sm) set('--radius-sm', radius.sm);
-		if (radius.md) set('--radius-md', radius.md);
-		if (radius.lg) set('--radius-lg', radius.lg);
-		if (borders.style) set('--color-border', borders.style.split(' ').slice(-1)[0] || 'rgba(0,0,0,0.08)');
+function setStatus(msg, ok){
+  if (!statusEl) return;
+  statusEl.textContent = msg || "";
+  statusEl.className = "status " + (ok ? "success" : "error");
+}
 
-		// Shadows
-		if (shadows.card) set('--shadow-1', shadows.card);
-		if (shadows.button) set('--shadow-2', shadows.button);
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    setStatus("", true);
 
-		// Layout
-		if (container.maxWidth) set('--container', container.maxWidth);
-		if (grid.gap) set('--grid-gap', grid.gap);
-		if (section.padding) set('--section-pad', section.padding);
+    const fd = new FormData(form);
+    const name  = (fd.get("name") || "").trim();
+    const email = (fd.get("email") || "").trim();
+    const phone = (fd.get("phone") || "").trim();
 
-		// Component-specific mappings
-		if (navbar.background) document.querySelector('.site-header')?.style.setProperty('background', navbar.background);
-		if (navbar.borderBottom) document.querySelector('.site-header')?.style.setProperty('border-bottom', navbar.borderBottom);
-		if (hero.background) document.documentElement.style.setProperty('--hero-bg', hero.background);
-		if (hero.headlineColor) document.documentElement.style.setProperty('--hero-headline', hero.headlineColor);
-		if (hero.subColor) document.documentElement.style.setProperty('--hero-sub', hero.subColor);
+    if (!name || !email || !phone) {
+      setStatus("Please fill name, email, and phone.", false);
+      return;
+    }
 
-		if (cards.style?.background) document.documentElement.style.setProperty('--color-card', cards.style.background);
-		if (cards.style?.border){
-			// derive only the color for border var when possible
-			const parts = String(cards.style.border).trim().split(' ');
-			const color = parts[parts.length-1];
-			if (color) document.documentElement.style.setProperty('--color-border', color);
-		}
-		if (cards.textColor) document.documentElement.style.setProperty('--card-text', cards.textColor);
+    // If no webhook configured, open calendar directly
+    if (!N8N_WEBHOOK) {
+      window.open(CALENDAR_URL, "_blank", "noopener");
+      setStatus("Opening calendar…", true);
+      return;
+    }
 
-		if (stats.style?.numberColor) document.documentElement.style.setProperty('--stat-number', stats.style.numberColor);
-		if (stats.style?.labelColor) document.documentElement.style.setProperty('--stat-label', stats.style.labelColor);
-
-		if (faq.style?.background) document.documentElement.style.setProperty('--faq-bg', faq.style.background);
-		if (faq.style?.border) document.documentElement.style.setProperty('--faq-border', faq.style.border);
-		if (faq.style?.radius) document.documentElement.style.setProperty('--faq-radius', faq.style.radius);
-		if (faq.summaryColor) document.documentElement.style.setProperty('--faq-summary', faq.summaryColor);
-		if (faq.answerColor) document.documentElement.style.setProperty('--faq-answer', faq.answerColor);
-
-		if (contact.formBg) document.querySelector('#book .card:last-child')?.style.setProperty('background', contact.formBg);
-		if (contact.formBorder) document.querySelector('#book .card:last-child')?.style.setProperty('border', contact.formBorder);
-
-		if (footer.background) document.documentElement.style.setProperty('--footer-bg', footer.background);
-		if (footer.textColor) document.documentElement.style.setProperty('--footer-text', footer.textColor);
-		if (footer.borderTop){
-			const el = document.querySelector('.site-footer');
-			if (el) el.style.setProperty('border-top', footer.borderTop);
-		}
-	}
-
-	function applyTypography(schema){
-		const typo = schema.typography || {};
-		const headings = typo.headings || {};
-		const body = typo.body || {};
-		const fontFamily = typo.fontFamily;
-
-		if (fontFamily){
-			document.documentElement.style.setProperty('--font-sans', fontFamily);
-			// Try loading via Google Fonts if looks like a Google family
-			if (/inter/i.test(fontFamily)) {
-				document.getElementById('fontLoader').href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
-			}
-		}
-		if (headings.h1?.size) document.documentElement.style.setProperty('--h1-size', headings.h1.size);
-		if (headings.h2?.size) document.documentElement.style.setProperty('--h2-size', headings.h2.size);
-		if (headings.h3?.size) document.documentElement.style.setProperty('--h3-size', headings.h3.size);
-		if (headings.h1?.weight) document.documentElement.style.setProperty('--h1-weight', headings.h1.weight);
-		if (headings.h2?.weight) document.documentElement.style.setProperty('--h2-weight', headings.h2.weight);
-		if (headings.h3?.weight) document.documentElement.style.setProperty('--h3-weight', headings.h3.weight);
-		if (body.size) document.documentElement.style.setProperty('--body-size', body.size);
-		if (body.lineHeight) document.documentElement.style.setProperty('--body-line', body.lineHeight);
-	}
-
-	function setupSmoothScroll(){
-		document.querySelectorAll('[data-scroll]').forEach((el)=>{
-			el.addEventListener('click',(e)=>{
-				const sel = el.getAttribute('data-scroll');
-				if(!sel) return;
-				const target = document.querySelector(sel);
-				if(!target) return;
-				e.preventDefault();
-				target.scrollIntoView({ behavior:'smooth', block:'start' });
-				if (sel.startsWith('#')) history.replaceState(null,'',sel);
-			});
-		});
-	}
-
-	function setupAccordion(){
-		document.querySelectorAll('.accordion-item').forEach((item)=>{
-			const trigger = item.querySelector('.accordion-trigger');
-			const panel = item.querySelector('.accordion-panel');
-			if(!trigger || !panel) return;
-			trigger.addEventListener('click', ()=>{
-				const expanded = item.getAttribute('aria-expanded') === 'true';
-				document.querySelectorAll('.accordion-item').forEach((i)=> i.setAttribute('aria-expanded','false'));
-				item.setAttribute('aria-expanded', String(!expanded));
-			});
-		});
-	}
-
-	function setupModals(){
-		document.querySelectorAll('[data-open]').forEach((btn)=>{
-			btn.addEventListener('click', ()=>{
-				const id = btn.getAttribute('data-open');
-				const modal = document.getElementById(id);
-				if (modal) modal.setAttribute('aria-hidden','false');
-			});
-		});
-		document.querySelectorAll('[data-close]').forEach((el)=>{
-			el.addEventListener('click', ()=>{
-				const id = el.getAttribute('data-close');
-				const modal = document.getElementById(id);
-				if (modal) modal.setAttribute('aria-hidden','true');
-			});
-		});
-		document.querySelectorAll('.modal').forEach((modal)=>{
-			modal.addEventListener('keydown',(e)=>{
-				if (e.key==='Escape') modal.setAttribute('aria-hidden','true');
-			});
-			modal.addEventListener('click',(e)=>{
-				if (e.target.classList.contains('modal-backdrop')) modal.setAttribute('aria-hidden','true');
-			});
-		});
-	}
-
-	function setupBookingForm(){
-		const form = document.getElementById('bookingForm');
-		const statusEl = document.getElementById('bookingStatus');
-		if(!form) return;
-		form.addEventListener('submit', async (e)=>{
-			e.preventDefault();
-			statusEl.textContent = 'Submitting...';
-			try{
-				await new Promise(res=>setTimeout(res,800)); // demo
-				statusEl.textContent = 'Thanks! We’ll text/email you available times shortly.';
-				form.reset();
-			}catch{
-				statusEl.textContent = 'Something went wrong. Please try again.';
-			}
-		});
-	}
-
-	function setupCalendarLink(){
-		const btn = document.getElementById('openCalendar');
-		if(!btn) return;
-		const CALENDAR_URL = 'https://cal.com/your-handle/intro'; // replace with your URL
-		btn.addEventListener('click',(e)=>{
-			e.preventDefault();
-			window.open(CALENDAR_URL,'_blank','noopener,noreferrer');
-		});
-	}
-})();
+    try {
+      const res = await fetch(N8N_WEBHOOK, { method: "POST", body: fd });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStatus("Thanks! We’ll confirm a time shortly.", true);
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setStatus("Couldn’t submit just now. Email us or try again.", false);
+    }
+  });
+}
