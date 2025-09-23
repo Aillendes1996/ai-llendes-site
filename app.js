@@ -1,84 +1,5 @@
 /* ==========
-   Basic helpers
-========== */
-const $ = (s, p = document) => p.querySelector(s);
-const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
-
-/* ==========
-   1) Year
-========== */
-(() => {
-  const y = $("#year");
-  if (y) y.textContent = new Date().getFullYear();
-})();
-
-/* ==========
-   2) Smooth scroll for links with [data-scroll]
-========== */
-(() => {
-  $$('a[data-scroll], [data-scroll]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      const href = el.getAttribute('href') || el.getAttribute('data-scroll');
-      if (!href || !href.startsWith('#')) return;
-      const target = $(href);
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      history.pushState(null, '', href);
-    });
-  });
-})();
-
-/* ==========
-   3) Accordion
-========== */
-(() => {
-  $$('.acc__btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-    });
-  });
-})();
-
-/* ==========
-   4) Calendar link (your actual Calendly URL)
-========== */
-const CAL_URL = 'https://calendly.com/aillendes1996/30min';
-(() => {
-  const btn = $('#openCalendar');
-  if (btn) {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.open(CAL_URL, '_blank', 'noopener');
-    });
-  }
-})();
-
-/* ==========
-   5) Lightweight booking form (no backend, just UI feedback)
-========== */
-(() => {
-  const form = $('#bookingForm');
-  const status = $('#bookingStatus');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (status) {
-      status.classList.remove('success', 'error');
-      status.textContent = lang === 'fr'
-        ? "Merci ! Nous vous recontactons rapidement pour confirmer l'horaire."
-        : "Thanks! We'll get back shortly to confirm a time.";
-      status.classList.add('success');
-    }
-    form.reset();
-  });
-})();
-
-/* ==========
-   6) i18n (EN/FR)
-   - Matches data-i18n keys used in your index.html
+   0) i18n FIRST (so nothing references lang before it's defined)
 ========== */
 const dict = {
   en: {
@@ -160,7 +81,6 @@ const dict = {
     footer_tag: "We reply in seconds and book calls on autopilot.",
     rights: "All rights reserved."
   },
-
   fr: {
     brand: "AI-llendes",
     nav_what: "Ce que nous faisons",
@@ -181,7 +101,7 @@ const dict = {
     chat_3: "Parfait — lien agenda ci-dessous 📅",
 
     what_title: "Ce que nous faisons",
-    what_sub: "Capture → Réponse → Réservation. 100% automatisé et journalisé.",
+    what_sub: "Capturer → Répondre → Réserver. 100% automatisé et journalisé.",
     card1_h: "🚀 Contact instantané",
     card1_p: "Réponse automatique par SMS, email et WhatsApp en quelques secondes après un formulaire, DM ou appel.",
     card2_h: "🤝 Nurturing 2-voies",
@@ -242,48 +162,106 @@ const dict = {
   }
 };
 
-/* ==========
-   i18n: apply translations
-========== */
 let lang = localStorage.getItem('lang') || (navigator.language || 'en').slice(0,2);
 if (!['en','fr'].includes(lang)) lang = 'en';
+
+const $ = (s, p = document) => p.querySelector(s);
+const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
 
 function applyI18n(locale) {
   const map = dict[locale] || dict.en;
 
-  // Update all nodes with data-i18n
   $$('[data-i18n]').forEach(node => {
     const key = node.getAttribute('data-i18n');
     if (!key || !(key in map)) return;
-
-    // If the text contains inline tags (e.g., <strong>), use innerHTML
-    const hasInline = /<\s*(strong|em|br|code|span)/i.test(map[key]);
-    if (hasInline) node.innerHTML = map[key];
+    // keep support for inline tags like <strong>
+    if (/[<](strong|em|span|br|code)/i.test(map[key])) node.innerHTML = map[key];
     else node.textContent = map[key];
   });
 
-  // Set active button style
-  const enBtn = $('#lang-en');
-  const frBtn = $('#lang-fr');
-  if (enBtn && frBtn) {
-    enBtn.classList.toggle('active', locale === 'en');
-    frBtn.classList.toggle('active', locale === 'fr');
-  }
+  // active button
+  $('#lang-en')?.classList.toggle('active', locale === 'en');
+  $('#lang-fr')?.classList.toggle('active', locale === 'fr');
 
-  // Update document lang attribute
   document.documentElement.setAttribute('lang', locale);
 }
 
-// Bind buttons
+/* Bind language buttons */
+$('#lang-en')?.addEventListener('click', () => { lang = 'en'; localStorage.setItem('lang', lang); applyI18n(lang); });
+$('#lang-fr')?.addEventListener('click', () => { lang = 'fr'; localStorage.setItem('lang', lang); applyI18n(lang); });
+
+/* Initial translation */
+applyI18n(lang);
+
+/* ==========
+   1) Year
+========== */
 (() => {
-  const enBtn = $('#lang-en');
-  const frBtn = $('#lang-fr');
-  if (enBtn) enBtn.addEventListener('click', () => { lang = 'en'; localStorage.setItem('lang', lang); applyI18n(lang); });
-  if (frBtn) frBtn.addEventListener('click', () => { lang = 'fr'; localStorage.setItem('lang', lang); applyI18n(lang); });
+  const y = $("#year");
+  if (y) y.textContent = new Date().getFullYear();
 })();
 
-// Initial render
-applyI18n(lang);
+/* ==========
+   2) Smooth scroll for links with [data-scroll]
+========== */
+(() => {
+  $$('a[data-scroll], [data-scroll]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      const href = el.getAttribute('href') || el.getAttribute('data-scroll');
+      if (!href || !href.startsWith('#')) return;
+      const target = $(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', href);
+    });
+  });
+})();
+
+/* ==========
+   3) Accordion
+========== */
+(() => {
+  $$('.acc__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+    });
+  });
+})();
+
+/* ==========
+   4) Calendar link
+========== */
+const CAL_URL = 'https://calendly.com/aillendes1996/30min';
+(() => {
+  const btn = $('#openCalendar');
+  if (btn) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open(CAL_URL, '_blank', 'noopener');
+    });
+  }
+})();
+
+/* ==========
+   5) Booking form (UI-only; uses current lang safely)
+========== */
+(() => {
+  const form = $('#bookingForm');
+  const status = $('#bookingStatus');
+  if (!form || !status) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.classList.remove('success', 'error');
+    status.textContent = (lang === 'fr')
+      ? "Merci ! Nous vous recontactons rapidement pour confirmer l'horaire."
+      : "Thanks! We'll get back shortly to confirm a time.";
+    status.classList.add('success');
+    form.reset();
+  });
+})();
 
 
 
