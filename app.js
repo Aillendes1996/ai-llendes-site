@@ -1,72 +1,289 @@
-/* ===== CONFIG ===== */
-const CALENDAR_URL = "https://calendly.com/aillendes1996/30min";
-const N8N_WEBHOOK  = "https://n8n.ai-llendes.org/webhook/lead-intake"; // "" to disable
+/* ==========
+   Basic helpers
+========== */
+const $ = (s, p = document) => p.querySelector(s);
+const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
 
-/* ===== UTIL ===== */
-document.getElementById("year").textContent = new Date().getFullYear();
+/* ==========
+   1) Year
+========== */
+(() => {
+  const y = $("#year");
+  if (y) y.textContent = new Date().getFullYear();
+})();
 
-// Smooth scroll for [data-scroll] and same-page anchors
-document.querySelectorAll('[data-scroll], a[href^="#"]').forEach(el => {
-  el.addEventListener("click", e => {
-    const href = el.getAttribute("data-scroll") || el.getAttribute("href");
-    if (!href || href === "#") return;
-    const target = document.querySelector(href);
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-});
-
-/* Calendar button */
-const calBtn = document.getElementById("openCalendar");
-if (calBtn) calBtn.href = CALENDAR_URL;
-
-/* Accordion */
-document.querySelectorAll(".acc__btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-    document.querySelectorAll(".acc__btn[aria-expanded='true']").forEach(b => {
-      if (b !== btn) b.setAttribute("aria-expanded", "false");
+/* ==========
+   2) Smooth scroll for links with [data-scroll]
+========== */
+(() => {
+  $$('a[data-scroll], [data-scroll]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      const href = el.getAttribute('href') || el.getAttribute('data-scroll');
+      if (!href || !href.startsWith('#')) return;
+      const target = $(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', href);
     });
-    btn.setAttribute("aria-expanded", String(!expanded));
   });
-});
+})();
 
-/* Booking form */
-const form = document.getElementById("bookingForm");
-const statusEl = document.getElementById("bookingStatus");
-function setStatus(msg, ok){
-  if (!statusEl) return;
-  statusEl.textContent = msg || "";
-  statusEl.className = "status " + (ok ? "success" : "error");
-}
+/* ==========
+   3) Accordion
+========== */
+(() => {
+  $$('.acc__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+    });
+  });
+})();
 
-if (form) {
-  form.addEventListener("submit", async (e) => {
+/* ==========
+   4) Calendar link (your actual Calendly URL)
+========== */
+const CAL_URL = 'https://calendly.com/aillendes1996/30min';
+(() => {
+  const btn = $('#openCalendar');
+  if (btn) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open(CAL_URL, '_blank', 'noopener');
+    });
+  }
+})();
+
+/* ==========
+   5) Lightweight booking form (no backend, just UI feedback)
+========== */
+(() => {
+  const form = $('#bookingForm');
+  const status = $('#bookingStatus');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    setStatus("", true);
-    const fd = new FormData(form);
-    const name  = (fd.get("name") || "").trim();
-    const email = (fd.get("email") || "").trim();
-    const phone = (fd.get("phone") || "").trim();
-    if (!name || !email || !phone) {
-      setStatus("Please fill name, email, and phone.", false);
-      return;
+    if (status) {
+      status.classList.remove('success', 'error');
+      status.textContent = lang === 'fr'
+        ? "Merci ! Nous vous recontactons rapidement pour confirmer l'horaire."
+        : "Thanks! We'll get back shortly to confirm a time.";
+      status.classList.add('success');
     }
-    if (!N8N_WEBHOOK) {
-      window.open(CALENDAR_URL, "_blank", "noopener");
-      setStatus("Opening calendar…", true);
-      return;
-    }
-    try {
-      const res = await fetch(N8N_WEBHOOK, { method: "POST", body: fd });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setStatus("Thanks! We’ll confirm a time shortly.", true);
-      form.reset();
-    } catch (err) {
-      console.error(err);
-      setStatus("Couldn’t submit just now. Email us or try again.", false);
-    }
+    form.reset();
   });
+})();
+
+/* ==========
+   6) i18n (EN/FR)
+   - Matches data-i18n keys used in your index.html
+========== */
+const dict = {
+  en: {
+    brand: "AI-llendes",
+    nav_what: "What We Do",
+    nav_faq: "FAQ",
+    nav_book: "Book a Call",
+
+    hero_h1: "Stop Losing Leads to Slow Replies",
+    hero_p: "We capture new inquiries and reply in <strong>&lt;60s</strong> over SMS/email/WhatsApp, qualifying and driving them straight to your calendar — 24/7.",
+    cta_primary: "Get More Booked Calls",
+    cta_secondary: "See How It Works",
+    bullet_1: "Average first response < 30 seconds",
+    bullet_2: "Show-up rates 20–40% higher",
+    bullet_3: "Works with your CRM, forms, and ads",
+
+    stat_more_calls: "More booked calls",
+    chat_1: "New lead captured ✅",
+    chat_2: "Hey! Want to chat this week?",
+    chat_3: "Great — calendar link below 📅",
+
+    what_title: "What We Do",
+    what_sub: "Capture → Respond → Book. Fully automated, fully logged.",
+    card1_h: "🚀 Instant Outreach",
+    card1_p: "Auto-respond over SMS, email, and WhatsApp within seconds of form fills, DMs, or inbound calls.",
+    card2_h: "🤝 2-Way Nurture",
+    card2_p: "Human-like sequences qualify, answer FAQs, and overcome objections—no manual chasing.",
+    card3_h: "📅 Autopilot Booking",
+    card3_p: "Push qualified leads to your calendar, with reminders and rescheduling handled automatically.",
+    card4_h: "⏳ Save Time",
+    card4_p: "We automate the busywork so you focus on closing—no more inbox ping-pong.",
+    card5_h: "♻️ Revive Dead Leads",
+    card5_p: "Smart follow-ups re-engage stale or ghosted leads and bring lost revenue back to life.",
+    card6_h: "🔌 Your Stack",
+    card6_p: "Google/Outlook calendars, HubSpot/Salesforce/Pipedrive, Meta/Google Ads forms, Typeform, Zapier—plug and play.",
+
+    commit_title: "Our Commitments",
+    commit1_h: "Sub-60s First Touch",
+    commit1_p: "Every qualified lead hears from you in under a minute, 24/7.",
+    commit2_h: "White-Glove Setup",
+    commit2_p: "We integrate your CRM, ads, and calendar—done for you.",
+    commit3_h: "Revenue-First",
+    commit3_p: "Optimized for booked revenue calls, not just replies.",
+    commit4_h: "Privacy & Compliance",
+    commit4_p: "Consent-aware messaging with clear opt-outs and data controls.",
+
+    stat_1: "Avg Response Time",
+    stat_2: "Always On",
+    stat_3: "After-Hours Engagement",
+    stat_4: "Booking Rate (mins)",
+
+    faq_title: "FAQ",
+    faq5_q: "Do you offer a money-back/results guarantee?",
+    faq5_a: "Yes. If we don’t meet the outcomes agreed on our kickoff call in the first 30 days after go-live (given agreed inputs like ad spend, list quality, and form placement), we won’t bill the monthly fee for that period. We either fix it together or pause—your choice.",
+    faq1_q: "How fast are replies really?",
+    faq1_a: "We target 15–60 seconds from capture to first message, 24/7. Most clients see ~30 seconds.",
+    faq2_q: "Will this work with my existing tools?",
+    faq2_a: "Yes—CRMs, calendars, forms, and ad platforms. If you have an API or Zapier, we can connect.",
+    faq3_q: "How do you handle compliance and opt-outs?",
+    faq3_a: "We include consent capture, clear opt-out flows, and respect regional regulations.",
+    faq4_q: "What does onboarding look like?",
+    faq4_a: "Strategy call, workflows defined, integrations connected, sequences launched—typically in 7–10 days.",
+
+    book_title: "Book a Call",
+    book_p: "Pick a time that works, or leave your info and we’ll confirm via SMS/email.",
+    book_left_h: "Direct calendar link",
+    book_left_p: "Already ready? Jump straight to the calendar.",
+    book_left_btn: "Open Calendar",
+    book_left_note: "We’ll use your Calendly link from",
+    book_right_h: "Request a booking",
+
+    form_name: "Name",
+    form_email: "Email",
+    form_phone: "Phone",
+    form_company: "Company",
+    form_notes: "What are you looking to improve?",
+    form_btn: "Request a Time",
+
+    footer_tag: "We reply in seconds and book calls on autopilot.",
+    rights: "All rights reserved."
+  },
+
+  fr: {
+    brand: "AI-llendes",
+    nav_what: "Ce que nous faisons",
+    nav_faq: "FAQ",
+    nav_book: "Réserver un appel",
+
+    hero_h1: "Ne perdez plus de prospects à cause de réponses lentes",
+    hero_p: "Nous capturons chaque demande et répondons en <strong>&lt;60s</strong> par SMS/email/WhatsApp, qualifions et les dirigeons directement vers votre agenda — 24/7.",
+    cta_primary: "Obtenir plus de rendez-vous",
+    cta_secondary: "Voir comment ça marche",
+    bullet_1: "Première réponse moyenne < 30 secondes",
+    bullet_2: "Taux de présence +20–40%",
+    bullet_3: "Compatible avec votre CRM, vos formulaires et vos publicités",
+
+    stat_more_calls: "Plus de rendez-vous",
+    chat_1: "Nouveau prospect capturé ✅",
+    chat_2: "Salut ! Dispo pour échanger cette semaine ?",
+    chat_3: "Parfait — lien agenda ci-dessous 📅",
+
+    what_title: "Ce que nous faisons",
+    what_sub: "Capture → Réponse → Réservation. 100% automatisé et journalisé.",
+    card1_h: "🚀 Contact instantané",
+    card1_p: "Réponse automatique par SMS, email et WhatsApp en quelques secondes après un formulaire, DM ou appel.",
+    card2_h: "🤝 Nurturing 2-voies",
+    card2_p: "Des séquences naturelles qui qualifient, répondent aux questions et lèvent les objections — sans relances manuelles.",
+    card3_h: "📅 Réservation autopilotée",
+    card3_p: "Envoie les prospects qualifiés vers votre agenda et gère rappels + reprogrammations automatiquement.",
+    card4_h: "⏳ Gagnez du temps",
+    card4_p: "On automatise la logistique pour vous concentrer sur la signature — fini le ping-pong d’emails.",
+    card5_h: "♻️ Réactiver les prospects froids",
+    card5_p: "Relances intelligentes pour réengager les leads inactifs et récupérer du revenu.",
+    card6_h: "🔌 Votre stack",
+    card6_p: "Google/Outlook, HubSpot/Salesforce/Pipedrive, formulaires Meta/Google, Typeform, Zapier — plug-and-play.",
+
+    commit_title: "Nos engagements",
+    commit1_h: "Premier contact en < 60s",
+    commit1_p: "Chaque prospect qualifié reçoit une réponse en moins d’une minute, 24/7.",
+    commit2_h: "Mise en place clé en main",
+    commit2_p: "Intégration de votre CRM, pub et agenda — prise en charge complète.",
+    commit3_h: "Priorité au revenu",
+    commit3_p: "Optimisé pour des appels qui génèrent du CA, pas seulement des réponses.",
+    commit4_h: "Confidentialité & conformité",
+    commit4_p: "Consentement, opt-out clairs et contrôle des données.",
+
+    stat_1: "Temps de réponse moyen",
+    stat_2: "Toujours actif",
+    stat_3: "Engagement hors-heures",
+    stat_4: "Délai de réservation (min)",
+
+    faq_title: "FAQ",
+    faq5_q: "Proposez-vous une garantie de résultat/remboursement ?",
+    faq5_a: "Oui. Si nous n’atteignons pas les objectifs convenus lors de l’appel de lancement dans les 30 jours suivant la mise en ligne (selon les apports convenus : budget pub, qualité des listes, emplacement des formulaires), vous ne serez pas facturé pour cette période. On corrige ensemble ou on met en pause — à vous de choisir.",
+    faq1_q: "Vos réponses sont vraiment rapides ?",
+    faq1_a: "Cible de 15–60 secondes entre la capture et le premier message, 24/7. La plupart des clients constatent ~30 s.",
+    faq2_q: "Compatible avec mes outils actuels ?",
+    faq2_a: "Oui — CRM, agendas, formulaires et plateformes publicitaires. Avec une API ou Zapier, on s’intègre.",
+    faq3_q: "Et la conformité et les opt-out ?",
+    faq3_a: "On capture le consentement, prévoit des opt-out clairs et respecte les exigences locales.",
+    faq4_q: "À quoi ressemble l’onboarding ?",
+    faq4_a: "Appel stratégique, définition des workflows, connexions, lancement des séquences — généralement en 7–10 jours.",
+
+    book_title: "Réserver un appel",
+    book_p: "Choisissez un créneau ou laissez vos infos — on confirme par SMS/email.",
+    book_left_h: "Lien agenda direct",
+    book_left_p: "Prêt tout de suite ? Allez directement à l’agenda.",
+    book_left_btn: "Ouvrir l’agenda",
+    book_left_note: "Nous utiliserons votre lien Calendly depuis",
+    book_right_h: "Demander un créneau",
+
+    form_name: "Nom",
+    form_email: "Email",
+    form_phone: "Téléphone",
+    form_company: "Société",
+    form_notes: "Que souhaitez-vous améliorer ?",
+    form_btn: "Demander un créneau",
+
+    footer_tag: "Nous répondons en secondes et réservons des appels en pilote automatique.",
+    rights: "Tous droits réservés."
+  }
+};
+
+/* ==========
+   i18n: apply translations
+========== */
+let lang = localStorage.getItem('lang') || (navigator.language || 'en').slice(0,2);
+if (!['en','fr'].includes(lang)) lang = 'en';
+
+function applyI18n(locale) {
+  const map = dict[locale] || dict.en;
+
+  // Update all nodes with data-i18n
+  $$('[data-i18n]').forEach(node => {
+    const key = node.getAttribute('data-i18n');
+    if (!key || !(key in map)) return;
+
+    // If the text contains inline tags (e.g., <strong>), use innerHTML
+    const hasInline = /<\s*(strong|em|br|code|span)/i.test(map[key]);
+    if (hasInline) node.innerHTML = map[key];
+    else node.textContent = map[key];
+  });
+
+  // Set active button style
+  const enBtn = $('#lang-en');
+  const frBtn = $('#lang-fr');
+  if (enBtn && frBtn) {
+    enBtn.classList.toggle('active', locale === 'en');
+    frBtn.classList.toggle('active', locale === 'fr');
+  }
+
+  // Update document lang attribute
+  document.documentElement.setAttribute('lang', locale);
 }
+
+// Bind buttons
+(() => {
+  const enBtn = $('#lang-en');
+  const frBtn = $('#lang-fr');
+  if (enBtn) enBtn.addEventListener('click', () => { lang = 'en'; localStorage.setItem('lang', lang); applyI18n(lang); });
+  if (frBtn) frBtn.addEventListener('click', () => { lang = 'fr'; localStorage.setItem('lang', lang); applyI18n(lang); });
+})();
+
+// Initial render
+applyI18n(lang);
+
+
 
