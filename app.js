@@ -1,4 +1,8 @@
-// ===== Translations =====
+// app.js
+
+// ------------------------------
+// 1. Translations dictionary
+// ------------------------------
 const translations = {
   en: {
     brand: "AI-llendes",
@@ -7,9 +11,10 @@ const translations = {
     nav_book: "Book a Call",
 
     hero_h1: "Stop Losing Leads to Slow Replies",
-    hero_p: "We capture new inquiries and reply in <60s over SMS/email/WhatsApp, qualifying and driving them straight to your calendar — 24/7.",
+    hero_p: "We capture new inquiries and reply in <strong><60s</strong> over SMS/email/WhatsApp, qualifying and driving them straight to your calendar — 24/7.",
     cta_primary: "Get More Booked Calls",
     cta_secondary: "See How It Works",
+
     bullet_1: "Average first response < 30 seconds",
     bullet_2: "Show-up rates 20–40% higher",
     bullet_3: "Works with your CRM, forms, and ads",
@@ -21,6 +26,7 @@ const translations = {
 
     what_title: "What We Do",
     what_sub: "Capture → Respond → Book. Fully automated, fully logged.",
+
     card1_h: "🚀 Instant Outreach",
     card1_p: "Auto-respond over SMS, email, and WhatsApp within seconds of form fills, DMs, or inbound calls.",
     card2_h: "🤝 2-Way Nurture",
@@ -50,8 +56,6 @@ const translations = {
     stat_4: "Booking Rate (mins)",
 
     faq_title: "FAQ",
-    faq5_q: "Do you offer a money-back/results guarantee?",
-    faq5_a: "Yes. If we don’t meet the outcomes agreed on our kickoff call in the first 30 days after go-live, we won’t bill the monthly fee. We either fix it together or pause—your choice.",
     faq1_q: "How fast are replies really?",
     faq1_a: "We target 15–60 seconds from capture to first message, 24/7. Most clients see ~30 seconds.",
     faq2_q: "Will this work with my existing tools?",
@@ -60,6 +64,8 @@ const translations = {
     faq3_a: "We include consent capture, clear opt-out flows, and respect regional regulations.",
     faq4_q: "What does onboarding look like?",
     faq4_a: "Strategy call, workflows defined, integrations connected, sequences launched—typically in 7–10 days.",
+    faq5_q: "Do you offer a money-back/results guarantee?",
+    faq5_a: "Yes. If we don’t meet the outcomes agreed on our kickoff call in the first 30 days after go-live, we won’t bill the monthly fee for that period.",
 
     book_title: "Book a Call",
     book_p: "Pick a time that works, or leave your info and we’ll confirm via SMS/email.",
@@ -87,42 +93,44 @@ const translations = {
     nav_book: "Réserver un appel",
 
     hero_h1: "Arrêtez de perdre des prospects à cause de réponses lentes",
-    hero_p: "Nous capturons les nouvelles demandes et répondons en <60s par SMS/email/WhatsApp, les qualifions et les envoyons directement dans votre agenda — 24/7.",
+    hero_p: "Nous capturons les nouvelles demandes et répondons en <strong><60s</strong> par SMS/email/WhatsApp, en les qualifiant et en les envoyant directement dans votre agenda — 24/7.",
     cta_primary: "Obtenez plus d’appels réservés",
     cta_secondary: "Voir comment ça marche",
+
     bullet_1: "Première réponse moyenne < 30 secondes",
-    bullet_2: "Taux de présence 20–40% plus élevés",
-    bullet_3: "Fonctionne avec votre CRM, vos formulaires et vos publicités",
+    bullet_2: "Taux de présence 20–40% plus élevé",
+    bullet_3: "Fonctionne avec votre CRM, formulaires et publicités",
 
     stat_more_calls: "Plus d’appels réservés",
-    chat_1: "Nouveau lead capturé ✅",
+    chat_1: "Nouveau prospect capturé ✅",
     chat_2: "Salut ! Voulez-vous discuter cette semaine ?",
-    chat_3: "Super — lien du calendrier ci-dessous 📅",
+    chat_3: "Parfait — lien vers l’agenda ci-dessous 📅",
 
     what_title: "Ce que nous faisons",
-    what_sub: "Capturer → Répondre → Réserver. Entièrement automatisé et enregistré.",
+    what_sub: "Capturer → Répondre → Réserver. Entièrement automatisé, entièrement enregistré.",
+
     card1_h: "🚀 Réponse instantanée",
-    card1_p: "Réponse automatique par SMS, email et WhatsApp en quelques secondes après les formulaires, DMs ou appels entrants.",
-    card2_h: "🤝 Nurturing 2-Voies",
-    card2_p: "Des séquences humaines qualifient, répondent aux FAQs et lèvent les objections — sans poursuite manuelle.",
-    card3_h: "📅 Réservation automatique",
-    card3_p: "Envoie les prospects qualifiés dans votre agenda, avec rappels et replanification automatiques.",
-    card4_h: "⏳ Gain de temps",
+    card1_p: "Réponse automatique par SMS, email et WhatsApp en quelques secondes après un formulaire, un DM ou un appel entrant.",
+    card2_h: "🤝 Nurturing à 2 sens",
+    card2_p: "Des séquences quasi humaines qui qualifient, répondent aux FAQ et lèvent les objections — sans relances manuelles.",
+    card3_h: "📅 Réservation en pilote automatique",
+    card3_p: "Envoie les prospects qualifiés dans votre agenda, avec rappels et reprogrammations automatiques.",
+    card4_h: "⏳ Gagner du temps",
     card4_p: "Nous automatisons les tâches répétitives pour que vous vous concentriez sur la conclusion.",
-    card5_h: "♻️ Relance des prospects inactifs",
-    card5_p: "Relances intelligentes pour réengager les prospects inactifs et récupérer du chiffre d’affaires perdu.",
-    card6_h: "🔌 Votre stack",
-    card6_p: "Google/Outlook, HubSpot/Salesforce/Pipedrive, formulaires Meta/Google Ads, Typeform, Zapier — plug and play.",
+    card5_h: "♻️ Relancer les prospects perdus",
+    card5_p: "Des relances intelligentes réengagent les prospects inactifs et redonnent vie au chiffre d’affaires perdu.",
+    card6_h: "🔌 Votre pile",
+    card6_p: "Calendriers Google/Outlook, HubSpot/Salesforce/Pipedrive, formulaires Meta/Google Ads, Typeform, Zapier — plug & play.",
 
     commit_title: "Nos engagements",
     commit1_h: "Premier contact en moins de 60s",
     commit1_p: "Chaque prospect qualifié reçoit une réponse en moins d’une minute, 24/7.",
     commit2_h: "Mise en place clé en main",
-    commit2_p: "Nous intégrons votre CRM, vos publicités et votre calendrier — tout fait pour vous.",
+    commit2_p: "Nous intégrons votre CRM, vos pubs et votre agenda — prêt à l’emploi.",
     commit3_h: "Priorité au revenu",
-    commit3_p: "Optimisé pour les appels générant des revenus, pas seulement des réponses.",
+    commit3_p: "Optimisé pour les appels générateurs de revenus, pas seulement les réponses.",
     commit4_h: "Confidentialité & conformité",
-    commit4_p: "Messages conformes avec désabonnement clair et contrôle des données.",
+    commit4_p: "Messages respectueux du consentement avec désinscription claire et contrôle des données.",
 
     stat_1: "Temps de réponse moyen",
     stat_2: "Toujours actif",
@@ -130,22 +138,22 @@ const translations = {
     stat_4: "Taux de réservation (minutes)",
 
     faq_title: "FAQ",
-    faq5_q: "Offrez-vous une garantie de remboursement/résultats ?",
-    faq5_a: "Oui. Si nous n’atteignons pas les résultats convenus lors de notre appel de lancement dans les 30 premiers jours, nous ne facturons pas les frais mensuels. On corrige ensemble ou on met en pause — à votre choix.",
     faq1_q: "Les réponses sont-elles vraiment rapides ?",
-    faq1_a: "Nous visons 15–60 secondes entre la capture et le premier message, 24/7. La plupart voient ~30 secondes.",
-    faq2_q: "Est-ce que ça fonctionne avec mes outils actuels ?",
-    faq2_a: "Oui — CRM, calendriers, formulaires et plateformes publicitaires. Avec un API ou Zapier, on se connecte.",
-    faq3_q: "Comment gérez-vous la conformité et les désabonnements ?",
-    faq3_a: "Nous incluons la capture du consentement, des flux de désabonnement clairs et le respect des réglementations.",
+    faq1_a: "Nous visons 15–60 secondes entre la capture et le premier message, 24/7. La plupart des clients constatent ~30 secondes.",
+    faq2_q: "Est-ce que ça fonctionne avec mes outils existants ?",
+    faq2_a: "Oui — CRMs, agendas, formulaires et plateformes publicitaires. Si vous avez une API ou Zapier, nous pouvons nous connecter.",
+    faq3_q: "Comment gérez-vous la conformité et les désinscriptions ?",
+    faq3_a: "Nous incluons la capture du consentement, des désinscriptions claires et respectons la réglementation régionale.",
     faq4_q: "À quoi ressemble l’onboarding ?",
-    faq4_a: "Appel stratégique, workflows définis, intégrations connectées, séquences lancées — en 7–10 jours.",
+    faq4_a: "Appel stratégique, définition des workflows, intégrations connectées, séquences lancées — généralement en 7–10 jours.",
+    faq5_q: "Proposez-vous une garantie de remboursement/résultats ?",
+    faq5_a: "Oui. Si nous ne respectons pas les résultats convenus lors de l’appel de démarrage dans les 30 premiers jours, nous ne facturons pas le mois en cours.",
 
     book_title: "Réserver un appel",
-    book_p: "Choisissez un créneau, ou laissez vos infos et nous confirmerons par SMS/email.",
-    book_left_h: "Lien direct vers le calendrier",
-    book_left_p: "Déjà prêt ? Passez directement au calendrier.",
-    book_left_btn: "Ouvrir le calendrier",
+    book_p: "Choisissez un horaire qui vous convient, ou laissez vos infos et nous confirmerons par SMS/email.",
+    book_left_h: "Lien direct vers l’agenda",
+    book_left_p: "Déjà prêt ? Accédez directement à l’agenda.",
+    book_left_btn: "Ouvrir l’agenda",
     book_left_note: "Nous utiliserons votre lien Calendly depuis",
     book_right_h: "Demander une réservation",
 
@@ -153,36 +161,50 @@ const translations = {
     form_email: "Email",
     form_phone: "Téléphone",
     form_company: "Entreprise",
-    form_notes: "Qu’aimeriez-vous améliorer ?",
-    form_btn: "Demander un créneau",
+    form_notes: "Que souhaitez-vous améliorer ?",
+    form_btn: "Demander un horaire",
 
-    footer_tag: "Nous répondons en quelques secondes et réservons des appels automatiquement.",
+    footer_tag: "Nous répondons en quelques secondes et réservons des appels en pilote automatique.",
     rights: "Tous droits réservés."
   }
 };
 
-// ===== Language Switch =====
+// ------------------------------
+// 2. Function to update DOM
+// ------------------------------
 function setLanguage(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+
   document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.dataset.i18n;
-    if (translations[lang] && translations[lang][key]) {
-      el.innerHTML = translations[lang][key];
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) {
+      el.innerHTML = dict[key];
     }
   });
-  localStorage.setItem("lang", lang);
-  document.querySelectorAll(".lang-switch button").forEach(btn => btn.classList.remove("active"));
-  document.getElementById("lang-" + lang).classList.add("active");
+
+  // Toggle button styles
+  document.querySelectorAll(".lang-switch button").forEach(btn =>
+    btn.classList.remove("active")
+  );
+  document.querySelector(`#lang-${lang}`).classList.add("active");
 }
 
-document.getElementById("lang-en").addEventListener("click", () => setLanguage("en"));
-document.getElementById("lang-fr").addEventListener("click", () => setLanguage("fr"));
+// ------------------------------
+// 3. Event listeners
+// ------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("lang-en").addEventListener("click", () => setLanguage("en"));
+  document.getElementById("lang-fr").addEventListener("click", () => setLanguage("fr"));
 
-// Load saved language
-const savedLang = localStorage.getItem("lang") || "en";
-setLanguage(savedLang);
+  // Default to English
+  setLanguage("en");
 
-// ===== Booking Form: No JS Fetch (handled by Formspree) =====
-// Nothing here. Formspree will auto-handle submission.
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+});
+
+
 
 
 
