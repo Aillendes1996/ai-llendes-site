@@ -1,158 +1,159 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI-llendes — Speed-to-Lead</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AI-llendes · Speed-to-Lead Automation</title>
+  <meta name="description" content="Reply to new leads in seconds and book calls on autopilot. AI-llendes builds speed-to-lead systems that capture, qualify, and schedule 24/7."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link id="fontLoader" rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="description"
-        content="We reply in seconds and book calls on autopilot. Speed-to-Lead automation that turns new leads into booked meetings while you sleep." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico"/>
+  <!-- NOTE: bump version to bust caches after any CSS change -->
+  <link rel="stylesheet" href="styles.css?v=3"/>
 </head>
-
 <body>
-  <!-- Top Nav -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top">
-        <span class="logo">⚡</span>
-        <span class="brand-text">AI-llendes</span>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="#top" aria-label="AI-llendes home">
+        <span class="brand__bolt">⚡</span> AI-llendes
       </a>
-
-      <nav class="main-nav">
-        <a class="nav-link" href="#what" data-i18n="nav_what">What We Do</a>
-        <a class="nav-link" href="#faq" data-i18n="nav_faq">FAQ</a>
-        <a class="btn btn-primary nav-cta" href="#book" data-i18n="nav_call">Book a Call</a>
-        <div class="lang-switch" role="group" aria-label="Language">
-          <button class="lang-btn" data-lang="en" id="lang-en">EN</button>
-          <button class="lang-btn" data-lang="fr" id="lang-fr">FR</button>
-        </div>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#what" data-scroll>What We Do</a>
+        <a href="#faq" data-scroll>FAQ</a>
+        <a href="#book" class="btn btn--primary" data-scroll>Book a Call</a>
       </nav>
     </div>
   </header>
 
+  <!-- HERO -->
   <main id="top">
-    <!-- HERO -->
     <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <h1 class="h1" data-i18n="hero_title">Stop Losing Leads to Slow Replies</h1>
-          <p class="lead" data-i18n="hero_sub">
-            We capture new inquiries and reply in <b>&lt;60s</b> over SMS/email/WhatsApp, qualifying and driving them straight to your calendar — 24/7.
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <h1>Stop Losing Leads to Slow Replies</h1>
+          <p class="lead">
+            We capture new inquiries and reply in <strong>&lt;60s</strong> over SMS/email/WhatsApp,
+            qualifying and driving them straight to your calendar — 24/7.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#book" data-i18n="cta_primary">Get More Booked Calls</a>
-            <a class="btn btn-outline btn-lg" href="#what" data-i18n="cta_secondary">See How It Works</a>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#book" data-scroll>Get More Booked Calls</a>
+            <a class="btn btn--ghost btn--lg" href="#what" data-scroll>See How It Works</a>
           </div>
-
           <ul class="bullets">
-            <li data-i18n="b1">Average first response &lt; 30 seconds</li>
-            <li data-i18n="b2">Show-up rates 20–40% higher</li>
-            <li data-i18n="b3">Works with your CRM, forms, and ads</li>
+            <li>Average first response &lt; 30 seconds</li>
+            <li>Show-up rates 20–40% higher</li>
+            <li>Works with your CRM, forms, and ads</li>
           </ul>
         </div>
 
-        <aside class="hero-fig">
-          <div class="pill stat" aria-hidden="true">
-            <div class="stat-val">+38%</div>
-            <div class="stat-sub" data-i18n="stat_booked">More booked calls</div>
+        <div class="hero__viz">
+          <div class="stat">
+            <div class="stat__value">+38%</div>
+            <div class="stat__label">More booked calls</div>
           </div>
           <div class="chat">
-            <div class="chat-row">
-              <span class="chip">New lead captured ✅</span>
-              <span class="bubble right">Hey! Want to chat this week?</span>
-            </div>
-            <div class="chat-row">
-              <span class="bubble left">Great — calendar link below 📅</span>
-            </div>
+            <div class="bubble bubble--in">New lead captured ✅</div>
+            <div class="bubble bubble--out">Hey! Want to chat this week?</div>
+            <div class="bubble bubble--in">Great — calendar link below 📅</div>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
 
     <!-- WHAT WE DO -->
     <section id="what" class="section">
       <div class="container">
-        <h2 class="h2" data-i18n="what_title">What We Do</h2>
-        <p class="muted" data-i18n="what_sub">Capture → Respond → Book. Fully automated, fully logged.</p>
+        <h2 class="section__title">What We Do</h2>
+        <p class="muted">Capture → Respond → Book. Fully automated, fully logged.</p>
 
-        <div class="grid three">
-          <div class="card">
-            <h3>⚡ <span data-i18n="w1_h">Instant Outreach</span></h3>
-            <p data-i18n="w1_p">Auto-respond across SMS, email, and WhatsApp within seconds of form fills, DMs, or inbound calls.</p>
-          </div>
-
-          <div class="card">
-            <h3>🤝 <span data-i18n="w2_h">2-Way Nurture</span></h3>
-            <p data-i18n="w2_p">Human-like sequences that qualify, answer FAQs, and overcome objections—no manual chasing.</p>
-          </div>
-
-          <div class="card">
-            <h3>📅 <span data-i18n="w3_h">Autopilot Booking</span></h3>
-            <p data-i18n="w3_p">Pushes qualified leads to your calendar, handles reminders and rescheduling automatically.</p>
-          </div>
-
-          <div class="card">
-            <h3>⏱ <span data-i18n="w4_h">Save Time</span></h3>
-            <p data-i18n="w4_p">We automate the busywork so you focus on closing—no more inbox ping-pong.</p>
-          </div>
-
-          <div class="card">
-            <h3>💬 <span data-i18n="w5_h">Revive Dead Leads</span></h3>
-            <p data-i18n="w5_p">Smart follow-ups re-engage stale or ghosted leads and bring lost revenue back to life.</p>
-          </div>
-
-          <div class="card">
-            <h3>🧩 <span data-i18n="w6_h">Your Stack</span></h3>
-            <p data-i18n="w6_p">Google/Outlook calendars, HubSpot/Salesforce/Pipedrive, Meta/Google Ads forms, Typeform, Zapier—plug and play.</p>
-          </div>
+        <div class="grid grid--3">
+          <article class="card">
+            <h3>🚀 Instant Outreach</h3>
+            <p>Auto-respond over SMS, email, and WhatsApp within seconds of form fills, DMs, or inbound calls.</p>
+          </article>
+          <article class="card">
+            <h3>🤝 2-Way Nurture</h3>
+            <p>Human-like sequences qualify, answer FAQs, and overcome objections—no manual chasing.</p>
+          </article>
+          <article class="card">
+            <h3>📅 Autopilot Booking</h3>
+            <p>Push qualified leads to your calendar, with reminders and rescheduling handled automatically.</p>
+          </article>
+          <article class="card">
+            <h3>⏳ Save Time</h3>
+            <p>We automate the busywork so you focus on closing—no more inbox ping-pong.</p>
+          </article>
+          <article class="card">
+            <h3>♻️ Revive Dead Leads</h3>
+            <p>Smart follow-ups re-engage stale or ghosted leads and bring lost revenue back to life.</p>
+          </article>
+          <article class="card">
+            <h3>🔌 Your Stack</h3>
+            <p>Google/Outlook calendars, HubSpot/Salesforce/Pipedrive, Meta/Google Ads forms, Typeform, Zapier—plug and play.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- COMMITMENTS -->
-    <section class="section surface">
+    <section class="section section--surface">
       <div class="container">
-        <h2 class="h2" data-i18n="commit_title">Our Commitments</h2>
-        <div class="grid two">
-          <div class="card">
-            <h3>⚡ <span data-i18n="c1_h">Sub-60s First Touch</span></h3>
-            <p data-i18n="c1_p">Every qualified lead hears from you in under a minute, 24/7.</p>
-          </div>
-          <div class="card">
-            <h3>🤝 <span data-i18n="c2_h">White-Glove Setup</span></h3>
-            <p data-i18n="c2_p">We integrate your CRM, ads, and calendar—done for you.</p>
-          </div>
-          <div class="card">
-            <h3>📈 <span data-i18n="c3_h">Revenue-First</span></h3>
-            <p data-i18n="c3_p">Optimized for booked revenue calls, not just replies.</p>
-          </div>
-          <div class="card">
-            <h3>🔒 <span data-i18n="c4_h">Privacy & Compliance</span></h3>
-            <p data-i18n="c4_p">Consent-aware messaging with clear opt-outs and data controls.</p>
-          </div>
-        </div>
+        <h2 class="section__title">Our Commitments</h2>
 
-        <div class="stats-row">
-          <div class="statbox">
-            <div class="stat-main">60s</div>
-            <div class="stat-sub" data-i18n="s1">Avg Response Time</div>
-          </div>
-          <div class="statbox">
-            <div class="stat-main">24/7</div>
-            <div class="stat-sub" data-i18n="s2">Always On</div>
-          </div>
-          <div class="statbox">
-            <div class="stat-main">+98%</div>
-            <div class="stat-sub" data-i18n="s3">After-Hours Engagement</div>
-          </div>
-          <div class="statbox">
-            <div class="stat-main">1 → 4</div>
-            <div class="stat-sub" data-i18n="s4">Booking Rate (mins)</div>
-          </div>
+        <!-- supports BOTH class names to be safe -->
+        <ul class="commitments list list--commitments">
+          <li>
+            <div class="icon commit-icon">⚡</div>
+            <div>
+              <h4>Sub-60s First Touch</h4>
+              <p>Every qualified lead hears from you in under a minute, 24/7.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon commit-icon">🤝</div>
+            <div>
+              <h4>White-Glove Setup</h4>
+              <p>We integrate your CRM, ads, and calendar—done for you.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon commit-icon">📈</div>
+            <div>
+              <h4>Revenue-First</h4>
+              <p>Optimized for booked revenue calls, not just replies.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon commit-icon">🔒</div>
+            <div>
+              <h4>Privacy & Compliance</h4>
+              <p>Consent-aware messaging with clear opt-outs and data controls.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="stats">
+      <div class="container stats__row">
+        <div class="stats__item">
+          <div class="stats__value">60s</div>
+          <div class="stats__label">Avg Response Time</div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__value">24/7</div>
+          <div class="stats__label">Always On</div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__value">+98%</div>
+          <div class="stats__label">After-Hours Engagement</div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__value">1 → 4</div>
+          <div class="stats__label">Booking Rate (mins)</div>
         </div>
       </div>
     </section>
@@ -160,135 +161,102 @@
     <!-- FAQ -->
     <section id="faq" class="section">
       <div class="container">
-        <h2 class="h2" data-i18n="faq_title">FAQ</h2>
-        <div class="accordion" id="faqAccordion">
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span data-i18n="q1">How fast are replies really?</span>
-              <span class="chev">▸</span>
-            </button>
-            <div class="accordion-panel">
-              <p data-i18n="a1">We target 15–60 seconds from capture to first message, 24/7. Most clients see ~30 seconds.</p>
-            </div>
-          </div>
+        <h2 class="section__title">FAQ</h2>
 
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span data-i18n="q2">Will this work with my existing tools?</span>
-              <span class="chev">▸</span>
+        <div class="accordion" role="tablist">
+          <article class="acc">
+            <button class="acc__btn" aria-expanded="false">
+              <span>How fast are replies really?</span><span class="chev">▸</span>
             </button>
-            <div class="accordion-panel">
-              <p data-i18n="a2">Yes—CRMs, calendars, forms, and ad platforms. If you have an API or Zapier, we can connect.</p>
+            <div class="acc__panel" role="region">
+              <p>We target 15–60 seconds from capture to first message, 24/7. Most clients see ~30 seconds.</p>
             </div>
-          </div>
+          </article>
 
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span data-i18n="q3">How do you handle compliance and opt-outs?</span>
-              <span class="chev">▸</span>
+          <article class="acc">
+            <button class="acc__btn" aria-expanded="false">
+              <span>Will this work with my existing tools?</span><span class="chev">▸</span>
             </button>
-            <div class="accordion-panel">
-              <p data-i18n="a3">We include consent capture, clear opt-out flows, and respect regional regulations.</p>
+            <div class="acc__panel" role="region">
+              <p>Yes—CRMs, calendars, forms, and ad platforms. If you have an API or Zapier, we can connect.</p>
             </div>
-          </div>
+          </article>
 
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span data-i18n="q4">What does onboarding look like?</span>
-              <span class="chev">▸</span>
+          <article class="acc">
+            <button class="acc__btn" aria-expanded="false">
+              <span>How do you handle compliance and opt-outs?</span><span class="chev">▸</span>
             </button>
-            <div class="accordion-panel">
-              <p data-i18n="a4">Strategy call, workflows defined, integrations connected, sequences launched—typically in 7–10 days.</p>
+            <div class="acc__panel" role="region">
+              <p>We include consent capture, clear opt-out flows, and respect regional regulations.</p>
             </div>
-          </div>
+          </article>
+
+          <article class="acc">
+            <button class="acc__btn" aria-expanded="false">
+              <span>What does onboarding look like?</span><span class="chev">▸</span>
+            </button>
+            <div class="acc__panel" role="region">
+              <p>Strategy call, workflows defined, integrations connected, sequences launched—typically in 7–10 days.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- BOOK -->
-    <section id="book" class="section">
+    <!-- BOOKING -->
+    <section id="book" class="section section--surface">
       <div class="container">
-        <h2 class="h2" data-i18n="book_title">Book a Call</h2>
-        <p class="muted" data-i18n="book_sub">Pick a time that works, or leave your info and we’ll confirm via SMS/email.</p>
+        <h2 class="section__title">Book a Call</h2>
+        <p class="muted">Pick a time that works, or leave your info and we’ll confirm via SMS/email.</p>
 
-        <div class="grid two booking-grid">
-          <div class="card">
-            <h3 data-i18n="cal_h">Direct calendar link</h3>
-            <p data-i18n="cal_p">Already ready? Jump straight to the calendar.</p>
-            <a class="btn btn-primary" id="openCalendar" href="#" rel="noopener" data-i18n="cal_btn">Open Calendar</a>
-            <p class="muted small" data-i18n="cal_note">We’ll use your Calendly link from <code>app.js</code>.</p>
-          </div>
+        <div class="grid grid--2 booking">
+          <article class="card">
+            <h3>Direct calendar link</h3>
+            <p>Already ready? Jump straight to the calendar.</p>
+            <a class="btn btn--primary" id="openCalendar" href="#" rel="noopener">Open Calendar</a>
+            <p class="small muted">We’ll use your Calendly link from <code>app.js</code>.</p>
+          </article>
 
-          <div class="card">
-            <h3 data-i18n="req_h">Request a booking</h3>
+          <article class="card">
+            <h3>Request a booking</h3>
             <form id="bookingForm" novalidate>
-              <div class="form-grid">
-                <label>
-                  <span data-i18n="f_name">Name</span>
-                  <input type="text" name="name" required />
-                </label>
-                <label>
-                  <span data-i18n="f_email">Email</span>
-                  <input type="email" name="email" required />
-                </label>
-                <label>
-                  <span data-i18n="f_phone">Phone</span>
-                  <input type="tel" name="phone" required />
-                </label>
-                <label>
-                  <span data-i18n="f_company">Company</span>
-                  <input type="text" name="company" />
-                </label>
-                <label class="full">
-                  <span data-i18n="f_notes">What are you looking to improve?</span>
-                  <textarea name="notes" rows="4"
-                    placeholder="Speed-to-lead, show rates, pipeline…"></textarea>
+              <div class="form">
+                <label><span>Name</span><input type="text" name="name" required></label>
+                <label><span>Email</span><input type="email" name="email" required></label>
+                <label><span>Phone</span><input type="tel" name="phone" required></label>
+                <label><span>Company</span><input type="text" name="company"></label>
+                <label class="full"><span>What are you looking to improve?</span>
+                  <textarea name="notes" rows="4" placeholder="Speed-to-lead, show rates, pipeline…"></textarea>
                 </label>
               </div>
-              <button type="submit" class="btn btn-primary btn-full" data-i18n="req_btn">Request a Time</button>
-              <p id="bookingStatus" class="status"></p>
+              <button type="submit" class="btn btn--primary btn--full">Request a Time</button>
+              <p id="bookingStatus" class="status" role="status"></p>
             </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT BAR (emojis) -->
-    <section class="contactbar" aria-label="Direct contact">
-      <div class="container contactbar-inner">
-        <div class="contact-item">
-          <span class="emoji">📧</span>
-          <a href="mailto:aillendes1996@gmail.com">aillendes1996@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <span class="emoji">📞</span>
-          <a href="tel:+14385206741">(438) 520-6741</a>
-        </div>
-        <div class="contact-item">
-          <span class="emoji">🔗</span>
-          <a href="https://www.linkedin.com/in/samuel-allendes-baa712386" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <div class="contact-item">
-          <span class="emoji">📅</span>
-          <a id="footerCal" href="#" rel="noopener">Book a Call</a>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
       <div>
         <strong>AI-llendes</strong>
-        <p class="muted" data-i18n="foot_sub">We reply in seconds and book calls on autopilot.</p>
+        <p class="muted">We reply in seconds and book calls on autopilot.</p>
       </div>
-      <div class="footer-actions">
-        <a class="btn btn-outline" href="#faq" data-i18n="nav_faq">FAQ</a>
-        <a class="btn btn-primary" href="#book" data-i18n="nav_call">Book a Call</a>
+      <div class="footer__links">
+        <a href="mailto:aillendes1996@gmail.com">aillendes1996@gmail.com</a>
+        <a href="tel:+14385206741">(438) 520-6741</a>
+        <a href="https://www.linkedin.com/in/samuel-allendes-baa712386" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#book" class="btn btn--primary" data-scroll>Book a Call</a>
       </div>
     </div>
+    <p class="tiny muted">© <span id="year"></span> AI-llendes. All rights reserved.</p>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- NOTE: bump version to bust caches after any JS change -->
+  <script src="app.js?v=3" defer></script>
 </body>
 </html>
+
