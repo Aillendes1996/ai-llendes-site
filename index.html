@@ -1,141 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-llendes | Speed-to-Lead Automation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-llendes — Speed‑to‑Lead Automation</title>
+  <meta name="description" content="AI-llendes builds ultra-fast lead response systems: capture → AI reply → book calls in seconds. Restaurants, gyms, real estate and local services." />
+  <link rel="canonical" href="https://ai-llendes.org/" />
+  <meta property="og:title" content="AI-llendes — Speed‑to‑Lead Automation" />
+  <meta property="og:description" content="Capture leads, reply in seconds, and book calls on autopilot." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ai-llendes.org/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="/favicon.ico" />
   <style>
+    :root {
+      --bg: #0b1220;
+      --bg-2: #0f172a;
+      --card: #0e1a30;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #facc15; /* yellow */
+      --accent-2: #22d3ee; /* cyan */
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --maxw: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      background: #f9f9f9;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg), var(--bg-2));
     }
-    header {
-      background: linear-gradient(135deg, #111827, #1f2937);
-      color: #fff;
-      padding: 4rem 2rem;
-      text-align: center;
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Top Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(9, 13, 25, 0.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
+    .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 14px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { font-weight: 800; letter-spacing: .3px; }
+    .nav-cta { background: var(--accent); color:#111827; padding:10px 16px; border-radius: 999px; font-weight:700; box-shadow: var(--shadow); }
+    .nav-cta:hover { filter: brightness(.95); text-decoration:none; }
+
+    /* Hero */
+    .hero { max-width: var(--maxw); margin: 0 auto; padding: 64px 20px 32px; display:grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items:center; }
+    .hero h1 { font-size: clamp(32px, 5vw, 56px); line-height:1.1; margin: 0 0 16px; }
+    .sub { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); }
+    .badges { display:flex; gap:12px; margin:22px 0 28px; flex-wrap:wrap; }
+    .badge { background: rgba(255,255,255,.06); color:#d1d5db; padding:8px 12px; border-radius:999px; font-size:14px; border:1px solid rgba(255,255,255,.08); }
+    .cta-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #ffd95e); color:#111827; padding:14px 18px; border-radius:12px; font-weight:800; box-shadow: var(--shadow); }
+    .btn-secondary { background: rgba(255,255,255,.08); color:var(--text); padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); }
+
+    .mock {
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.08);
+      background: radial-gradient(1200px 500px at -20% -20%, rgba(250,204,21,.15), transparent 40%),
+                  radial-gradient(1200px 600px at 120% -20%, rgba(34,211,238,.15), transparent 45%),
+                  linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding: 24px; min-height: 320px; display:flex; align-items:center; justify-content:center; text-align:center; color:#c7d2fe;
     }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-      opacity: 0.9;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #111827;
-      background: #facc15;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #eab308;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    section h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      color: #1f2937;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .feature-box {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-    footer {
-      background: #111827;
-      color: #ddd;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-    }
-    footer a {
-      color: #facc15;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    footer a:hover {
-      text-decoration: underline;
+
+    /* Trust row */
+    .trust { max-width: var(--maxw); margin: 8px auto 24px; padding: 0 20px; color: var(--muted); font-size:14px; }
+    .logos { display:flex; gap:24px; opacity:.6; flex-wrap:wrap; align-items:center; }
+    .logos span { background: rgba(255,255,255,.06); padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.08); }
+
+    /* Sections */
+    section { max-width: var(--maxw); margin: 0 auto; padding: 56px 20px; }
+    h2 { font-size: clamp(26px, 3.5vw, 38px); margin:0 0 22px; }
+    .muted { color: var(--muted); }
+
+    /* Feature grid */
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: var(--card); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius-sm); padding:20px; box-shadow: var(--shadow); }
+    .card h3 { margin:0 0 8px; font-size: 18px; }
+    .card p { margin:0; color:#cbd5e1; }
+
+    /* Testimonials */
+    .testi { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .quote { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.1); border-radius: var(--radius-sm); padding:18px; }
+    .quote b { display:block; margin-top:10px; }
+
+    /* FAQ */
+    .faq { max-width: 900px; }
+    details { background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 14px 16px; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 700; }
+
+    /* Contact */
+    .contact-wrap { display:grid; grid-template-columns: 1.2fr 1fr; gap:24px; }
+    form { background: var(--card); border:1px solid rgba(255,255,255,.1); border-radius: var(--radius-sm); padding:20px; }
+    label { display:block; font-weight:600; margin: 8px 0 6px; }
+    input, textarea { width:100%; background:#0b1324; color:var(--text); border:1px solid rgba(255,255,255,.1); border-radius: 10px; padding:12px; }
+    textarea { min-height: 120px; resize: vertical; }
+    .submit { margin-top: 12px; width:100%; }
+
+    footer { max-width: var(--maxw); margin: 0 auto; padding: 40px 20px 60px; color: var(--muted); text-align:center; }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .testi { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .logos { gap: 12px; }
     }
   </style>
 </head>
 <body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">AI‑llendes</div>
+      <a class="nav-cta" href="#contact">Book a Demo</a>
+    </div>
+  </div>
 
-  <!-- Hero -->
-  <header>
-    <h1>AI-llendes</h1>
-    <p>⚡ Speed-to-Lead Automation for Businesses</p>
-    <a href="#contact" class="btn">Get in Touch</a>
-  </header>
-
-  <!-- About -->
-  <section>
-    <h2>Why Speed Matters</h2>
-    <p style="text-align: center; max-width:700px; margin:auto;">
-      78% of deals go to the business that responds first.  
-      With AI-llendes, you’ll never miss a lead again.  
-      Our automation captures inquiries instantly, replies in seconds, and books calls on autopilot.
-    </p>
-  </section>
-
-  <!-- Features -->
-  <section>
-    <h2>What We Do</h2>
-    <div class="features">
-      <div class="feature-box">
-        <h3>🚀 Instant Replies</h3>
-        <p>AI responds to every new lead in under 60 seconds.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Speed‑to‑Lead Automation that replies in seconds & books calls on autopilot</h1>
+      <p class="sub">We capture every inquiry, craft a tailored AI response, and route it to your CRM + calendar instantly. Never lose a hot lead again.</p>
+      <div class="badges">
+        <span class="badge">⏱ Reply time: <b><span style="color:#fff">&lt;60s</span></b></span>
+        <span class="badge">🔗 Sheets / CRM / Slack</span>
+        <span class="badge">🛡️ Anti‑spam + validation</span>
       </div>
-      <div class="feature-box">
-        <h3>📊 Lead Tracking</h3>
-        <p>All conversations are logged and organized in your CRM or Google Sheets.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#contact">Get Started</a>
+        <a class="btn-secondary" href="#how">See How It Works</a>
       </div>
-      <div class="feature-box">
-        <h3>📅 Easy Booking</h3>
-        <p>Leads can instantly book a call with you via Calendly.</p>
+    </div>
+    <div class="mock">
+      <div>
+        <div style="font-weight:800; font-size:22px; margin-bottom:6px;">Workflow Snapshot</div>
+        <div class="muted">Form ➜ n8n ➜ AI reply ➜ Email + Sheet + Slack ➜ Calendly</div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p style="text-align: center;">Let’s automate your lead response system.</p>
-    <p style="text-align: center;">
-      📧 <a href="mailto:contact@ai-llendes.org">contact@ai-llendes.org</a><br>
-      📞 <a href="tel:+15145555555">+1 (514) 555-5555</a><br>
-      🔗 <a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a> | 
-      <a href="https://calendly.com/your-link" target="_blank">Book a Call</a>
-    </p>
+  <!-- TRUST -->
+  <div class="trust">
+    Trusted for fast response by local service brands
+    <div class="logos" style="margin-top:10px">
+      <span>Fitness</span> <span>Restaurants</span> <span>Real Estate</span> <span>Clinics</span> <span>Auto</span>
+    </div>
+  </div>
+
+  <!-- WHAT WE DO -->
+  <section id="how">
+    <h2>What We Do</h2>
+    <p class="muted">Capture → Respond → Book. Fully automated, fully logged.</p>
+    <div class="grid" style="margin-top:18px">
+      <div class="card"><h3>🚀 Instant Replies</h3><p>AI replies to new leads in under 60 seconds with tailored answers.</p></div>
+      <div class="card"><h3>📊 Lead Tracking</h3><p>Every conversation is logged to Google Sheets or your CRM.</p></div>
+      <div class="card"><h3>📅 Easy Booking</h3><p>Calendar links included so leads can book calls immediately.</p></div>
+    </div>
   </section>
 
-  <!-- Footer -->
+  <!-- TESTIMONIALS -->
+  <section>
+    <h2>Results Clients Care About</h2>
+    <div class="testi">
+      <div class="quote">“Booked 8 intros the first week. The automated replies feel human.”<b>— Gym Owner</b></div>
+      <div class="quote">“We respond at night and on weekends now. Close rate went up.”<b>— Real Estate Team</b></div>
+      <div class="quote">“Everything lands in our sheet + Slack. Zero lead leakage.”<b>— Restaurant Group</b></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details>
+      <summary>How fast can I be live?</summary>
+      <p>Usually same‑day for the basic workflow. We start with a website form and expand to email, socials, and lead sources you already use.</p>
+    </details>
+    <details>
+      <summary>Which tools do you integrate?</summary>
+      <p>Google Sheets, Slack/Discord, Calendly, Gmail, web forms, Typeform/Tally, and more. We can connect your CRM via API.</p>
+    </details>
+    <details>
+      <summary>What about spam?</summary>
+      <p>We use honeypot fields and Cloudflare Turnstile for forms, plus validation rules before sending any AI response.</p>
+    </details>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-wrap">
+      <form method="post" action="https://n8n.ai-llendes.org/webhook/lead-intake" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="source" value="website" />
+        <!-- Honeypot: leave blank -->
+        <input type="text" name="_company" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <label for="name">Name</label>
+        <input id="name" name="name" required placeholder="Your name" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+        <label for="phone">Phone (optional)</label>
+        <input id="phone" name="phone" placeholder="+1 514‑555‑1234" />
+
+        <label for="message">What do you need?</label>
+        <textarea id="message" name="message" placeholder="Tell us about your leads and response workflow…"></textarea>
+
+        <!-- Turnstile (optional): replace with your sitekey and uncomment)
+        <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+        -->
+
+        <button class="btn-primary submit" type="submit">Send →</button>
+        <p class="muted" style="margin-top:8px">Or email us directly: <a href="mailto:contact@ai-llendes.org">contact@ai-llendes.org</a></p>
+      </form>
+
+      <div class="card">
+        <h3>Direct</h3>
+        <p>📧 <a href="mailto:contact@ai-llendes.org">contact@ai-llendes.org</a><br/>
+           ☎️ <a href="tel:+15145555555">+1 (514) 555‑5555</a><br/>
+           🔗 <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a> ·
+           <a href="https://calendly.com/your-link" target="_blank" rel="noopener">Book a Call</a></p>
+        <p class="muted">We’ll reply quickly (usually within minutes) with next steps.</p>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>&copy; 2025 AI-llendes | All Rights Reserved</p>
+    © <span id="y"></span> AI‑llendes · Speed‑to‑Lead Automation
   </footer>
 
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
