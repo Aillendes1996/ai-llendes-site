@@ -255,3 +255,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const initial = localStorage.getItem("lang") || "en";
   applyLang(initial);
 });
+
+// --- FAQ accordion toggle ---
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".acc__btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!isOpen));
+    });
+  });
+});
+
