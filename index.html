@@ -3,71 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI-llendes — Speed-to-Lead Automation</title>
-  <meta name="description" content="Capture leads, reply in seconds, and book calls on autopilot. No fake reviews. Risk-free kickoff." />
+  <title>AI-llendes — Speed‑to‑Lead Automation</title>
+  <meta name="description" content="AI-llendes builds ultra-fast lead response systems: capture → AI reply → book calls in seconds. Restaurants, gyms, real estate and local services." />
   <link rel="canonical" href="https://ai-llendes.org/" />
-  <meta property="og:title" content="AI-llendes — Speed-to-Lead Automation" />
+  <meta property="og:title" content="AI-llendes — Speed‑to‑Lead Automation" />
   <meta property="og:description" content="Capture leads, reply in seconds, and book calls on autopilot." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ai-llendes.org/" />
   <meta name="twitter:card" content="summary_large_image" />
+  <!-- Favicon placeholder -->
   <link rel="icon" href="/favicon.ico" />
   <style>
-    :root{
-      --bg:#0b1220;--bg2:#0f172a;--card:#0e1a30;--text:#e5e7eb;--muted:#9ca3af;
-      --accent:#facc15;--accent2:#22d3ee;--maxw:1120px;--r:16px;--rs:12px;
-      --sh:0 10px 30px rgba(0,0,0,.25)
+    :root {
+      --bg: #0b1220;
+      --bg-2: #0f172a;
+      --card: #0e1a30;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #facc15; /* yellow */
+      --accent-2: #22d3ee; /* cyan */
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --maxw: 1120px;
     }
-    *{box-sizing:border-box} html,body{margin:0}
-    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      color:var(--text);background:linear-gradient(180deg,var(--bg),var(--bg2))}
-    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-    .nav{position:sticky;top:0;z-index:40;background:rgba(9,13,25,.6);backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:800;letter-spacing:.3px}
-    .nav-right{display:flex;gap:10px;align-items:center}
-    .chip{background:rgba(255,255,255,.08);color:var(--text);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
-    .nav-cta{background:var(--accent);color:#111827;padding:10px 16px;border-radius:999px;font-weight:700;box-shadow:var(--sh)}
-    .hero{max-width:var(--maxw);margin:0 auto;padding:64px 20px 32px;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center}
-    .hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin:0 0 16px}
-    .sub{color:var(--muted);font-size:clamp(16px,2.2vw,20px)}
-    .badges{display:flex;gap:12px;margin:22px 0 28px;flex-wrap:wrap}
-    .badge{background:rgba(255,255,255,.06);color:#d1d5db;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08)}
-    .btn1{background:linear-gradient(135deg,var(--accent),#ffd95e);color:#111827;padding:14px 18px;border-radius:12px;font-weight:800;box-shadow:var(--sh)}
-    .btn2{background:rgba(255,255,255,.08);color:var(--text);padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-    .mock{border-radius:var(--r);border:1px solid rgba(255,255,255,.08);
-      background:radial-gradient(1200px 500px at -20% -20%,rgba(250,204,21,.15),transparent 40%),
-                 radial-gradient(1200px 600px at 120% -20%,rgba(34,211,238,.15),transparent 45%),
-                 linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-      box-shadow:var(--sh);padding:24px;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;color:#c7d2fe}
-    .trust{max-width:var(--maxw);margin:8px auto 24px;padding:0 20px;color:var(--muted);font-size:14px}
-    .logos{display:flex;gap:24px;opacity:.6;flex-wrap:wrap;align-items:center}
-    .logos span{background:rgba(255,255,255,.06);padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.08)}
-    section{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
-    h2{font-size:clamp(26px,3.5vw,38px);margin:0 0 22px}
-    .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--rs);padding:20px;box-shadow:var(--sh)}
-    .card h3{margin:0 0 8px;font-size:18px}
-    .card p{margin:0;color:#cbd5e1}
-    .testi .quote{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);padding:18px}
-    .faq{max-width:900px}
-    details{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;margin:10px 0}
-    summary{cursor:pointer;font-weight:700}
-    .contact-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:24px}
-    form{background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);padding:20px}
-    label{display:block;font-weight:600;margin:8px 0 6px}
-    input,textarea{width:100%;background:#0b1324;color:var(--text);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px}
-    textarea{min-height:120px;resize:vertical}
-    .submit{margin-top:12px;width:100%}
-    footer{max-width:var(--maxw);margin:0 auto;padding:40px 20px 60px;color:var(--muted);text-align:center}
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .contact-wrap{grid-template-columns:1fr}
-      .logos{gap:12px}
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg), var(--bg-2));
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Top Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(9, 13, 25, 0.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 14px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { font-weight: 800; letter-spacing: .3px; }
+    .nav-cta { background: var(--accent); color:#111827; padding:10px 16px; border-radius: 999px; font-weight:700; box-shadow: var(--shadow); }
+    .nav-cta:hover { filter: brightness(.95); text-decoration:none; }
+
+    /* Hero */
+    .hero { max-width: var(--maxw); margin: 0 auto; padding: 64px 20px 32px; display:grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items:center; }
+    .hero h1 { font-size: clamp(32px, 5vw, 56px); line-height:1.1; margin: 0 0 16px; }
+    .sub { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); }
+    .badges { display:flex; gap:12px; margin:22px 0 28px; flex-wrap:wrap; }
+    .badge { background: rgba(255,255,255,.06); color:#d1d5db; padding:8px 12px; border-radius:999px; font-size:14px; border:1px solid rgba(255,255,255,.08); }
+    .cta-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #ffd95e); color:#111827; padding:14px 18px; border-radius:12px; font-weight:800; box-shadow: var(--shadow); }
+    .btn-secondary { background: rgba(255,255,255,.08); color:var(--text); padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); }
+
+    .mock {
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.08);
+      background: radial-gradient(1200px 500px at -20% -20%, rgba(250,204,21,.15), transparent 40%),
+                  radial-gradient(1200px 600px at 120% -20%, rgba(34,211,238,.15), transparent 45%),
+                  linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding: 24px; min-height: 320px; display:flex; align-items:center; justify-content:center; text-align:center; color:#c7d2fe;
+    }
+
+    /* Trust row */
+    .trust { max-width: var(--maxw); margin: 8px auto 24px; padding: 0 20px; color: var(--muted); font-size:14px; }
+    .logos { display:flex; gap:24px; opacity:.6; flex-wrap:wrap; align-items:center; }
+    .logos span { background: rgba(255,255,255,.06); padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.08); }
+
+    /* Sections */
+    section { max-width: var(--maxw); margin: 0 auto; padding: 56px 20px; }
+    h2 { font-size: clamp(26px, 3.5vw, 38px); margin:0 0 22px; }
+    .muted { color: var(--muted); }
+
+    /* Feature grid */
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: var(--card); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius-sm); padding:20px; box-shadow: var(--shadow); }
+    .card h3 { margin:0 0 8px; font-size: 18px; }
+    .card p { margin:0; color:#cbd5e1; }
+
+    /* Testimonials */
+    .testi { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .quote { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.1); border-radius: var(--radius-sm); padding:18px; }
+    .quote b { display:block; margin-top:10px; }
+
+    /* FAQ */
+    .faq { max-width: 900px; }
+    details { background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 14px 16px; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 700; }
+
+    /* Contact */
+    .contact-wrap { display:grid; grid-template-columns: 1.2fr 1fr; gap:24px; }
+    form { background: var(--card); border:1px solid rgba(255,255,255,.1); border-radius: var(--radius-sm); padding:20px; }
+    label { display:block; font-weight:600; margin: 8px 0 6px; }
+    input, textarea { width:100%; background:#0b1324; color:var(--text); border:1px solid rgba(255,255,255,.1); border-radius: 10px; padding:12px; }
+    textarea { min-height: 120px; resize: vertical; }
+    .submit { margin-top: 12px; width:100%; }
+
+    footer { max-width: var(--maxw); margin: 0 auto; padding: 40px 20px 60px; color: var(--muted); text-align:center; }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .testi { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .logos { gap: 12px; }
     }
   </style>
 </head>
@@ -75,34 +118,34 @@
   <!-- NAV -->
   <div class="nav">
     <div class="nav-inner">
-      <div class="brand">AI-llendes</div>
-      <div class="nav-right">
-        <button class="chip" id="lang-en" type="button">EN</button>
-        <button class="chip" id="lang-fr" type="button">FR</button>
-        <a class="nav-cta" href="#contact" data-i18n="nav_cta">Book a Demo</a>
-      </div>
+      <div class="brand">AI‑llendes<\/div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn-secondary" id="lang-en" aria-label="English">EN<\/button>
+        <button class="btn-secondary" id="lang-fr" aria-label="Français">FR<\/button>
+        <a class="nav-cta" href="#contact" data-i18n="nav_cta">Book a Demo<\/a>
+      <\/div>
     </div>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div>
-      <h1 data-i18n="hero_title">Speed-to-Lead Automation that replies in seconds & books calls on autopilot</h1>
-      <p class="sub" data-i18n="hero_sub">We capture every inquiry, craft a tailored AI response, and route it to your CRM + calendar instantly. Never lose a hot lead again.</p>
+      <h1 data-i18n="hero_title">Speed‑to‑Lead Automation that replies in seconds & books calls on autopilot<\/h1>
+      <p class=\"sub\" data-i18n=\"hero_sub\">We capture every inquiry, craft a tailored AI response, and route it to your CRM + calendar instantly. Never lose a hot lead again.<\/p>
       <div class="badges">
-        <span class="badge">⏱ Reply time: <b style="color:#fff">&lt;60s</b></span>
+        <span class="badge">⏱ Reply time: <b><span style="color:#fff">&lt;60s</span></b></span>
         <span class="badge">🔗 Sheets / CRM / Slack</span>
-        <span class="badge">🛡️ Anti-spam + validation</span>
+        <span class="badge">🛡️ Anti‑spam + validation</span>
       </div>
       <div class="cta-row">
-        <a class="btn1" href="#contact" data-i18n="hero_cta1">Get Started</a>
-        <a class="btn2" href="#how" data-i18n="hero_cta2">See How It Works</a>
+        <a class="btn-primary" href="#contact">Get Started</a>
+        <a class="btn-secondary" href="#how">See How It Works</a>
       </div>
     </div>
     <div class="mock">
       <div>
-        <div style="font-weight:800;font-size:22px;margin-bottom:6px;">Workflow Snapshot</div>
-        <div class="muted">Form → n8n → AI reply → Email + Sheet + Slack → Calendly</div>
+        <div style="font-weight:800; font-size:22px; margin-bottom:6px;">Workflow Snapshot</div>
+        <div class="muted">Form ➜ n8n ➜ AI reply ➜ Email + Sheet + Slack ➜ Calendly</div>
       </div>
     </div>
   </section>
@@ -111,14 +154,14 @@
   <div class="trust">
     Trusted for fast response by local service brands
     <div class="logos" style="margin-top:10px">
-      <span>Fitness</span><span>Restaurants</span><span>Real Estate</span><span>Clinics</span><span>Auto</span>
+      <span>Fitness</span> <span>Restaurants</span> <span>Real Estate</span> <span>Clinics</span> <span>Auto</span>
     </div>
   </div>
 
   <!-- WHAT WE DO -->
   <section id="how">
-    <h2 data-i18n="what_title">What We Do</h2>
-    <p class="muted" data-i18n="what_sub">Capture → Respond → Book. Fully automated, fully logged.</p>
+    <h2>What We Do</h2>
+    <p class="muted">Capture → Respond → Book. Fully automated, fully logged.</p>
     <div class="grid" style="margin-top:18px">
       <div class="card"><h3>🚀 Instant Replies</h3><p>AI replies to new leads in under 60 seconds with tailored answers.</p></div>
       <div class="card"><h3>📊 Lead Tracking</h3><p>Every conversation is logged to Google Sheets or your CRM.</p></div>
@@ -126,139 +169,93 @@
     </div>
   </section>
 
-  <!-- COMMITMENTS (authentic section, no fake reviews) -->
+  <!-- COMMITMENTS (replaces testimonials) -->
   <section>
-    <h2 data-i18n="commit_title">Our Commitments</h2>
-    <div class="grid">
-      <div class="card">
-        <h3 data-i18n="commit1_h">No Fake Reviews</h3>
-        <p data-i18n="commit1_p">We don't fabricate testimonials. We demo the workflow live and, when available, share anonymized metrics and real outcomes.</p>
-      </div>
-      <div class="card">
-        <h3 data-i18n="commit2_h">Risk-Free Kickoff</h3>
-        <p data-i18n="commit2_p">If the system doesn’t generate agreed qualified opportunities in the first 30 days after go-live (with agreed inputs), you don’t pay the monthly fee. We fix it or pause—your call.</p>
-      </div>
-      <div class="card">
-        <h3 data-i18n="commit3_h">Your Data, Your Stack</h3>
-        <p data-i18n="commit3_p">You own the data, sheets, and workflows. Everything is portable and cancel-anytime. No lock-in.</p>
-      </div>
-    </div>
-  </section>
+    <h2 data-i18n=\"commit_title\">Our Commitments<\/h2>
+    <div class=\"grid\">
+      <div class=\"card\"><h3 data-i18n=\"commit1_h\">No Fake Reviews<\/h3><p data-i18n=\"commit1_p\">We don't fabricate testimonials. We demonstrate the workflow live and, when available, share anonymized metrics and real outcomes.<\/p><\/div>
+      <div class=\"card\"><h3 data-i18n=\"commit2_h\">Risk‑Free Kickoff<\/h3><p data-i18n=\"commit2_p\">If the system doesn't generate qualified opportunities in the first 30 days after go‑live (with agreed inputs), you don't pay the monthly fee. We either fix it or pause—your call.<\/p><\/div>
+      <div class=\"card\"><h3 data-i18n=\"commit3_h\">Your Data, Your Stack<\/h3><p data-i18n=\"commit3_p\">You own the data, sheets, and workflows. Everything is portable and cancel‑anytime. No lock‑in.<\/p><\/div>
+    <\/div>
+  <\/section>
 
   <!-- FAQ -->
-  <section class="faq">
-    <h2>FAQ</h2>
+  <section class=\"faq\">
+    <h2>FAQ<\/h2>
     <details>
-      <summary data-i18n="faq_guarantee_q">Do you offer a money-back or results guarantee?</summary>
-      <p data-i18n="faq_guarantee_a">Yes. If we don't produce the agreed lead outcomes within 30 days after go-live (given agreed inputs like list quality, form placement, ad spend), you won’t be billed the monthly fee for that period. We can continue iterating or pause—your choice.</p>
-    </details>
+      <summary data-i18n=\"faq_guarantee_q\">Do you offer a money‑back or results guarantee?<\/summary>
+      <p data-i18n=\"faq_guarantee_a\">Yes. If we don't produce the agreed lead outcomes within the first 30 days after go‑live (given the inputs we agree on, e.g., ad spend, list quality, form placement), you won't be billed the monthly fee for that period. We can continue iterating or pause—your choice.<\/p>
+    <\/details>
     <details>
-      <summary>How fast can I be live?</summary>
-      <p>Same-day for the basic workflow. We start with a website form and expand to email, socials, and other lead sources.</p>
-    </details>
+      <summary>How fast can I be live?<\/summary>
+      <p>Usually same‑day for the basic workflow. We start with a website form and expand to email, socials, and lead sources you already use.<\/p>
+    <\/details>
     <details>
-      <summary>Which tools do you integrate?</summary>
-      <p>Google Sheets, Slack/Discord, Calendly, Gmail, web forms, Typeform/Tally, and your CRM via API.</p>
-    </details>
+      <summary>Which tools do you integrate?<\/summary>
+      <p>Google Sheets, Slack/Discord, Calendly, Gmail, web forms, Typeform/Tally, and more. We can connect your CRM via API.<\/p>
+    <\/details>
     <details>
-      <summary>What about spam?</summary>
-      <p>We use a honeypot and (optionally) Cloudflare Turnstile, plus validation before any AI response.</p>
-    </details>
-  </section>
+      <summary>What about spam?<\/summary>
+      <p>We use honeypot fields and Cloudflare Turnstile for forms, plus validation rules before sending any AI response.<\/p>
+    <\/details>
+  <\/section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-wrap">
-      <!-- Change action to your n8n webhook when ready -->
-      <form method="post" action="#">
+      <form method="post" action="https://n8n.ai-llendes.org/webhook/lead-intake" enctype="application/x-www-form-urlencoded">
         <input type="hidden" name="source" value="website" />
+        <!-- Honeypot: leave blank -->
         <input type="text" name="_company" style="display:none" tabindex="-1" autocomplete="off" />
+
         <label for="name">Name</label>
         <input id="name" name="name" required placeholder="Your name" />
+
         <label for="email">Email</label>
         <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
         <label for="phone">Phone (optional)</label>
-        <input id="phone" name="phone" placeholder="+1 438-520-6741" />
+        <input id="phone" name="phone" placeholder="+1 514‑555‑1234" />
+
         <label for="message">What do you need?</label>
         <textarea id="message" name="message" placeholder="Tell us about your leads and response workflow…"></textarea>
-        <!-- Turnstile (optional)
+
+        <!-- Turnstile (optional): replace with your sitekey and uncomment)
         <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
         -->
-        <button class="btn1 submit" type="submit">Send →</button>
-        <p class="muted" style="margin-top:8px">Or email us directly:
-          <a href="mailto:aillendes1996@gmail.com">aillendes1996@gmail.com</a></p>
+
+        <button class="btn-primary submit" type="submit">Send →</button>
+        <p class="muted" style="margin-top:8px">Or email us directly: <a href=\"mailto:aillendes1996@gmail.com\">aillendes1996@gmail.com<\/a></p>
       </form>
+
       <div class="card">
         <h3>Direct</h3>
-        <p>
-          📧 <a href="mailto:aillendes1996@gmail.com">aillendes1996@gmail.com</a><br/>
-          ☎️ <a href="tel:+14385206741">(438) 520-6741</a><br/>
-          🔗 <a href="https://www.linkedin.com/in/samuel-allendes-baa712386" target="_blank" rel="noopener">LinkedIn</a> ·
-          <a href="https://calendly.com/aillendes1996/30min" target="_blank" rel="noopener">Book a Call</a>
-        </p>
-        <p class="muted">We reply quickly (usually within minutes).</p>
+        <p>📧 <a href="mailto:aillendes1996@gmail.com">aillendes1996@gmail.com</a><br/>
+           ☎️ <a href="tel:+14385206741">(438) 520-6741</a><br/>
+           🔗 <a href="https://www.linkedin.com/in/samuel-allendes-baa712386" target="_blank" rel="noopener">LinkedIn</a> ·
+           <a href="https://calendly.com/aillendes1996/30min" target="_blank" rel="noopener">Book a Call</a>
+        <p class="muted">We’ll reply quickly (usually within minutes) with next steps.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    © <span id="y"></span> AI-llendes · Speed-to-Lead Automation
+    © <span id="y"></span> AI‑llendes · Speed‑to‑Lead Automation
   </footer>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Simple i18n (EN/FR)
     const dict = {
-      en: {
-        nav_cta:'Book a Demo',
-        hero_title:'Speed-to-Lead Automation that replies in seconds & books calls on autopilot',
-        hero_sub:'We capture every inquiry, craft a tailored AI response, and route it to your CRM + calendar instantly. Never lose a hot lead again.',
-        hero_cta1:'Get Started', hero_cta2:'See How It Works',
-        what_title:'What We Do', what_sub:'Capture → Respond → Book. Fully automated, fully logged.',
-        commit_title:'Our Commitments',
-        commit1_h:'No Fake Reviews',
-        commit1_p:'We do not fabricate testimonials. We demo live and share anonymized metrics when available.',
-        commit2_h:'Risk-Free Kickoff',
-        commit2_p:'If the system doesn’t generate agreed qualified opportunities in 30 days (given agreed inputs), you don’t pay the monthly fee.',
-        commit3_h:'Your Data, Your Stack',
-        commit3_p:'You own the data, sheets, and workflows. Portable. Cancel anytime.',
-        faq_guarantee_q:'Do you offer a money-back or results guarantee?',
-        faq_guarantee_a:'Yes. If we don’t produce the agreed lead outcomes within 30 days after go-live (given agreed inputs), you won’t be billed for that period.'
-      },
-      fr: {
-        nav_cta:'Réserver une démo',
-        hero_title:'Une réponse aux prospects en quelques secondes, avec prise de rendez-vous automatique',
-        hero_sub:'Nous capturons chaque demande, rédigeons une réponse adaptée avec l’IA et l’envoyons immédiatement vers votre CRM et votre agenda.',
-        hero_cta1:'Commencer', hero_cta2:'Voir le fonctionnement',
-        what_title:'Ce que nous faisons', what_sub:'Capturer → Répondre → Réserver. Entièrement automatisé et journalisé.',
-        commit_title:'Nos engagements',
-        commit1_h:'Pas de faux avis',
-        commit1_p:'Aucun témoignage inventé. Démo en direct et métriques anonymisées si disponibles.',
-        commit2_h:'Démarrage sans risque',
-        commit2_p:'Si le système ne génère pas les opportunités convenues sous 30 jours (avec les entrées convenues), pas de facturation mensuelle.',
-        commit3_h:'Vos données, votre stack',
-        commit3_p:'Vous possédez les données, feuilles et workflows. Portable et résiliable à tout moment.',
-        faq_guarantee_q:'Proposez-vous une garantie de résultats ou de remboursement ?',
-        faq_guarantee_a:'Oui. Si les résultats convenus ne sont pas atteints dans les 30 jours suivant la mise en ligne (avec les entrées convenues), le mois n’est pas facturé.'
-      }
+      en: { nav_cta: 'Book a Demo', hero_title: 'Speed‑to‑Lead Automation that replies in seconds & books calls on autopilot', hero_sub: 'We capture every inquiry, craft a tailored AI response, and route it to your CRM + calendar instantly. Never lose a hot lead again.', commit_title: 'Our Commitments', commit1_h: 'No Fake Reviews', commit1_p: 'We do not fabricate testimonials. We demonstrate the workflow live and, when available, share anonymized metrics and real outcomes.', commit2_h: 'Risk‑Free Kickoff', commit2_p: 'If the system doesn\'t generate qualified opportunities in the first 30 days after go‑live (with agreed inputs), you don\'t pay the monthly fee. We either fix it or pause—your call.', commit3_h: 'Your Data, Your Stack', commit3_p: 'You own the data, sheets, and workflows. Everything is portable and cancel‑anytime. No lock‑in.', faq_guarantee_q: 'Do you offer a money‑back or results guarantee?', faq_guarantee_a: 'Yes. If we don\'t produce the agreed lead outcomes within the first 30 days after go‑live (given the inputs we agree on), you won\'t be billed the monthly fee for that period. We can continue iterating or pause—your choice.' },
+      fr: { nav_cta: 'Réserver une démo', hero_title: 'Une réponse aux prospects en quelques secondes, avec prise de rendez‑vous automatique', hero_sub: 'Nous capturons chaque demande, rédigeons une réponse adaptée avec l\'IA et l\'envoyons immédiatement vers votre CRM et votre agenda. Ne perdez plus jamais un prospect chaud.', commit_title: 'Nos engagements', commit1_h: 'Pas de faux avis', commit1_p: 'Aucun témoignage inventé. Nous faisons une démo en direct et partageons des métriques anonymisées quand elles sont disponibles.', commit2_h: 'Démarrage sans risque', commit2_p: 'Si le système ne génère pas d\'opportunités qualifiées durant les 30 premiers jours après la mise en ligne (avec les entrées convenues), vous ne payez pas le mois. On corrige ou on met en pause — à vous de choisir.', commit3_h: 'Vos données, votre stack', commit3_p: 'Vous conservez la propriété des données, des feuilles et des workflows. C\'est portable et résiliable à tout moment. Aucun verrouillage.', faq_guarantee_q: 'Proposez‑vous une garantie de résultats ou de remboursement ?', faq_guarantee_a: 'Oui. Si nous n\'atteignons pas les résultats convenus dans les 30 jours suivant la mise en ligne (avec les entrées convenues), vous n\'êtes pas facturé du mois. Nous pouvons poursuivre l\'itération ou mettre en pause — à vous de choisir.' }
     };
-    function setLang(l){
-      localStorage.setItem('lang', l);
-      const map = dict[l] || dict.en;
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const k = el.getAttribute('data-i18n');
-        if(map[k]) el.textContent = map[k];
-      });
-    }
-    document.getElementById('lang-en').addEventListener('click', ()=>setLang('en'));
-    document.getElementById('lang-fr').addEventListener('click', ()=>setLang('fr'));
+    function setLang(l){ localStorage.setItem('lang', l); const map = dict[l] || dict.en; document.querySelectorAll('[data-i18n]').forEach(el=>{ const k = el.getAttribute('data-i18n'); if(map[k]) el.textContent = map[k]; }); }
+    document.getElementById('lang-en').addEventListener('click', ()=> setLang('en'));
+    document.getElementById('lang-fr').addEventListener('click', ()=> setLang('fr'));
     setLang(localStorage.getItem('lang') || 'en');
-  </script>
+  <\/script>
 </body>
 </html>
-
-
 
