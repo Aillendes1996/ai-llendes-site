@@ -193,4 +193,91 @@ input, textarea {
   .stats-row { grid-template-columns: 1fr 1fr; }
   .main-nav { gap: 10px; }
 }
+/* ==== ai-llendes theme override (tweakcn dark) ========================== */
+:root {
+  /* core surface + text */
+  --bg: oklch(0.2178 0 0);                 /* background */
+  --text: oklch(0.9067 0 0);               /* foreground */
+  --muted: oklch(0.7058 0 0);              /* muted-foreground */
+  --card: oklch(0.2850 0 0);               /* cards/blocks */
+  --card-foreground: oklch(0.9067 0 0);
+
+  /* accents */
+  --primary: oklch(0.6083 0.2090 27.0276);         /* vivid orange */
+  --primary-contrast: oklch(1 0 0);                /* white text on primary */
+  --accent: oklch(0.7482 0.1235 244.7492);         /* electric blue */
+  --accent-contrast: oklch(0 0 0);
+
+  /* secondary / metrics */
+  --secondary: oklch(0.6423 0.1467 133.0145);      /* green for “good” */
+  --destructive: oklch(0.7839 0.1719 68.0943);     /* red/orange */
+
+  /* chrome */
+  --border: oklch(0.4091 0 0);
+  --ring:   oklch(0.6083 0.2090 27.0276);
+
+  /* optional shadows to match tweakcn vibe */
+  --shadow-xs: 0 2px 5px hsl(0 0% 0% / .30);
+  --shadow-sm: 0 2px 5px hsl(0 0% 0% / .60), 0 1px 2px -1px hsl(0 0% 0% / .60);
+  --shadow-md: 0 2px 5px hsl(0 0% 0% / .60), 0 2px 4px -1px hsl(0 0% 0% / .60);
+  --radius: 10px;  /* keep your soft rounded cards */
+}
+
+/* map to existing utility rules without changing markup */
+body {
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 20% -20%, color-mix(in oklch, var(--primary) 8%, var(--bg)), transparent 45%),
+              radial-gradient(1200px 800px at 120% -10%, color-mix(in oklch, var(--accent) 8%, var(--bg)), transparent 45%),
+              var(--bg);
+}
+
+.card, .surface, .faq .accordion-item, .booking-grid .card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, color-mix(in oklch, var(--primary) 88%, var(--accent) 12%), var(--primary));
+  color: var(--primary-contrast);
+  border: 1px solid color-mix(in oklch, var(--primary) 55%, var(--border) 45%);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { filter: brightness(1.05); }
+
+.btn-outline, .btn-ghost {
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--bg) 85%, var(--card) 15%);
+}
+.btn-outline:hover, .btn-ghost:hover {
+  background: color-mix(in oklch, var(--card) 70%, var(--bg) 30%);
+}
+
+.badge, .bubble {
+  background: color-mix(in oklch, var(--card) 85%, var(--bg) 15%);
+  border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  color: var(--text);
+}
+
+/* contact row pills */
+.contact-row a {
+  display:inline-flex; gap:.45rem; align-items:center;
+  background: color-mix(in oklch, var(--card) 85%, var(--bg) 15%);
+  border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  padding:.5rem .75rem; border-radius: 999px; box-shadow: var(--shadow-xs);
+  color: var(--text); text-decoration:none;
+}
+.contact-row a:hover { background: color-mix(in oklch, var(--card) 70%, var(--bg) 30%); }
+
+/* language chips */
+.lang-switch { display:flex; gap:.4rem; }
+.lang-switch button {
+  padding:.25rem .5rem; border-radius:6px; border:1px solid var(--border);
+  background: color-mix(in oklch, var(--bg) 85%, var(--card) 15%); color: var(--text);
+}
+.lang-switch button[aria-pressed="true"] {
+  background: var(--accent); color: var(--accent-contrast); border-color: var(--accent);
+}
 
