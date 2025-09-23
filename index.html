@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <!-- NOTE: bump version to bust caches after any CSS change -->
+  <link rel="stylesheet" href="styles.css?v=3"/>
 </head>
 <body>
   <!-- NAV -->
@@ -100,30 +101,32 @@
     <section class="section section--surface">
       <div class="container">
         <h2 class="section__title">Our Commitments</h2>
-        <ul class="list list--commitments">
+
+        <!-- supports BOTH class names to be safe -->
+        <ul class="commitments list list--commitments">
           <li>
-            <div class="icon">⚡</div>
+            <div class="icon commit-icon">⚡</div>
             <div>
               <h4>Sub-60s First Touch</h4>
               <p>Every qualified lead hears from you in under a minute, 24/7.</p>
             </div>
           </li>
           <li>
-            <div class="icon">🤝</div>
+            <div class="icon commit-icon">🤝</div>
             <div>
               <h4>White-Glove Setup</h4>
               <p>We integrate your CRM, ads, and calendar—done for you.</p>
             </div>
           </li>
           <li>
-            <div class="icon">📈</div>
+            <div class="icon commit-icon">📈</div>
             <div>
               <h4>Revenue-First</h4>
               <p>Optimized for booked revenue calls, not just replies.</p>
             </div>
           </li>
           <li>
-            <div class="icon">🔒</div>
+            <div class="icon commit-icon">🔒</div>
             <div>
               <h4>Privacy & Compliance</h4>
               <p>Consent-aware messaging with clear opt-outs and data controls.</p>
@@ -252,6 +255,8 @@
     <p class="tiny muted">© <span id="year"></span> AI-llendes. All rights reserved.</p>
   </footer>
 
-  <script src="app.js" defer></script>
+  <!-- NOTE: bump version to bust caches after any JS change -->
+  <script src="app.js?v=3" defer></script>
 </body>
 </html>
+
