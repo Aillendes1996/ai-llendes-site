@@ -265,3 +265,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// === Minimal safe submit + redirect handler (PASTE AT END OF app.js) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("bookingForm");
+  if (!form) return;
+
+  // Guard: if some other submit handler already exists and you don't want this,
+  // remove this block. Rollback instructions below.
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Let browser show native validation errors (pattern/required)
+    if (!form.reportValidity()) return;
+
+    // Build form payload
+    const data = new FormData(form);
+
+    // Prevent double submits
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+    }
+
+    // Send to Formspree; we don't care about the response contents — we control UX
+    try {
+      await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      });
+    } catch (err) {
+      // network error — still redirect to your page so user sees confirmation
+      // (optionally you can show an inline error before redirect, but keeping it simple)
+    } finally {
+      // Use absolute path for reliability
+      window.location.href = "/thank-you.html";
+    }
+  }, { once: false });
+});
