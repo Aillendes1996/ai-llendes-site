@@ -265,3 +265,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("bookingForm");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    try {
+      const resp = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      });
+      // Success or not, we control the UX
+      window.location.href = "thank-you.html"; // use absolute URL if you prefer
+    } catch (_) {
+      // Even on network error, still take them to thank-you (you can show an error there if you want)
+      window.location.href = "thank-you.html";
+    }
+  });
+});
