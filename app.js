@@ -272,6 +272,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+    
+  // ignore language buttons if they triggered the submit
+  if (e.submitter && (e.submitter.id === "lang-en" || e.submitter.id === "lang-fr")) return;
+
   const data = new FormData(form);
 
   // prevent double submit
@@ -294,3 +299,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "thank-you.html";
   }
 });
+
