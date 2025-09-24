@@ -265,38 +265,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("bookingForm");
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-    
-  // ignore language buttons if they triggered the submit
-  if (e.submitter && (e.submitter.id === "lang-en" || e.submitter.id === "lang-fr")) return;
-
-  const data = new FormData(form);
-
-  // prevent double submit
-  const submitBtn = form.querySelector('button[type="submit"]');
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
-  }
-
-  try {
-    const resp = await fetch(form.action, {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" }
-    });
-    // Success or not, we control the UX
-    window.location.href = "thank-you.html"; // use absolute URL if you prefer
-  } catch (_) {
-    // Even on network error, still take them to thank-you (you can show an error there if you want)
-    window.location.href = "thank-you.html";
-  }
-});
-
