@@ -294,6 +294,34 @@ function setFormRedirect(lang) {
   redir.value = base + target;
 }
 
+// --- bootstrap: ensure the page actually initializes ---
+document.addEventListener("DOMContentLoaded", () => {
+  // 1) Apply language once on load
+  const urlLang = new URLSearchParams(location.search).get("lang");
+  const saved   = localStorage.getItem("lang");
+  const browser = navigator.language || "en";
+  if (typeof applyLang === "function") {
+    applyLang(urlLang || saved || browser);
+  }
+
+  // 2) Wire EN/FR buttons
+  const enBtn = document.getElementById("lang-en");
+  const frBtn = document.getElementById("lang-fr");
+  if (enBtn) enBtn.addEventListener("click", (e) => { e.preventDefault(); applyLang("en"); });
+  if (frBtn) frBtn.addEventListener("click", (e) => { e.preventDefault(); applyLang("fr"); });
+
+  // 3) Enable FAQ accordion
+  document.querySelectorAll(".acc__btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!expanded));
+      const acc = btn.closest(".acc");
+      if (acc) acc.classList.toggle("open", !expanded);
+    });
+  });
+});
+
+
 
 
 
