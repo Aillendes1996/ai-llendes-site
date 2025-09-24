@@ -271,11 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    // ✅ Honor HTML5 required/pattern validation
-  if (!form.reportValidity()) return;
-
+  e.preventDefault();
   const data = new FormData(form);
 
   // prevent double submit
@@ -286,13 +282,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   try {
-    await fetch(form.action, {
+    const resp = await fetch(form.action, {
       method: "POST",
       body: data,
       headers: { Accept: "application/json" }
     });
-  } finally {
-    // Success or error, always redirect
-    window.location.href = "/thank-you.html";
+    // Success or not, we control the UX
+    window.location.href = "thank-you.html"; // use absolute URL if you prefer
+  } catch (_) {
+    // Even on network error, still take them to thank-you (you can show an error there if you want)
+    window.location.href = "thank-you.html";
   }
 });
