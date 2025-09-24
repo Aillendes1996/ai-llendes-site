@@ -211,13 +211,17 @@ const I18N = {
   }
 };
 
+// normalize: treat 'fr', 'FR', 'fr-CA' as French
+const isFR = (v) => String(v || "").toLowerCase().startsWith("fr");
+
+
 // 2) Helper: choose innerHTML only if the string contains markup
 const hasHTML = (s) => /<[^>]+>/.test(s);
 
 // 3) Apply language
 function applyLang(lang) {
   try {
-    const dict = I18N[lang] || I18N.en;
+    const dict = I18N[ isFR(lang) ? "fr" : "en" ] || I18N.en;
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
@@ -281,6 +285,7 @@ function setFormRedirect(lang) {
   const base = window.location.origin;
   redir.value = base + (lang === "fr" ? "/merci.html" : "/thank-you.html");
 }
+
 
 
 
