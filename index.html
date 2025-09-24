@@ -229,12 +229,12 @@
             <h3 data-i18n="book_left_h">Direct calendar link</h3>
             <p data-i18n="book_left_p">Already ready? Jump straight to the calendar.</p>
             <a 
-    class="btn btn--primary" 
-    id="openCalendar" 
-    href="https://calendly.com/aillendes1996/30min" 
-    target="_blank" 
-    rel="noopener" 
-    data-i18n="book_left_btn"
+                 class="btn btn--primary" 
+                 id="openCalendar" 
+                 href="https://calendly.com/aillendes1996/30min" 
+                 target="_blank" 
+                 rel="noopener" 
+                 data-i18n="book_left_btn"
   >
     Open Calendar
   </a>
@@ -252,6 +252,12 @@
                   <textarea name="notes" rows="4" placeholder="Speed-to-lead, show rates, pipeline…"></textarea>
                 </label>
               </div>
+              
+              <!-- Better email subject + spam honeypot + redirect -->
+              <input type="hidden" name="_subject" value="New booking request · AI-llendes">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <input type="hidden" name="_redirect" value="https://ai-llendes.org/thank-you.html">
+
               <button type="submit" class="btn btn--primary btn--full" data-i18n="form_btn">Request a Time</button>
               <p id="bookingStatus" class="status" role="status"></p>
             </form>
@@ -281,6 +287,7 @@
   <script src="app.js?v=7" defer></script>
 </body>
 </html>
+
 
 
 
