@@ -221,20 +221,28 @@ const hasHTML = (s) => /<[^>]+>/.test(s);
 // 3) Apply language
 function applyLang(lang) {
   try {
-    const dict = I18N[ isFR(lang) ? "fr" : "en" ] || I18N.en;
+    const L = isFR(lang) ? "fr" : "en";
+    const dict = I18N[L] || I18N.en;
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       const val = dict[key];
-      if (val == null) return; // unknown key -> leave as is
-
+      if (val == null) return;
       if (hasHTML(val)) el.innerHTML = val;
       else el.textContent = val;
     });
 
-    // 🔑 update redirect whenever language changes
-    setFormRedirect(lang);
-    } catch (err) {
+    // active state + document lang
+    document.querySelectorAll(".lang-switch button").forEach((b) => b.classList.remove("active"));
+    const btn = document.getElementById("lang-" + L);
+    if (btn) btn.classList.add("active");
+
+    document.documentElement.setAttribute("lang", L);
+    localStorage.setItem("lang", L);
+
+    // update redirect
+    setFormRedirect(L);
+  } catch (err) {
     console.error("applyLang error:", err);
   }
 }
@@ -281,10 +289,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function setFormRedirect(lang) {
   const redir = document.querySelector('form#bookingForm input[name="_redirect"]');
   if (!redir) return;
-  // Use absolute URLs (Formspree prefers absolute redirects)
   const base = window.location.origin;
-  redir.value = base + (lang === "fr" ? "/merci.html" : "/thank-you.html");
+  const target = isFR(lang) ? "/merci.html" : "/thank-you.html"; // adjust filename if needed
+  redir.value = base + target;
 }
+
+
 
 
 
