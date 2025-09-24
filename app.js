@@ -232,7 +232,6 @@ function applyLang(lang) {
       else el.textContent = val;
     });
 
-    // active state + document lang
     document.querySelectorAll(".lang-switch button").forEach((b) => b.classList.remove("active"));
     const btn = document.getElementById("lang-" + L);
     if (btn) btn.classList.add("active");
@@ -240,7 +239,6 @@ function applyLang(lang) {
     document.documentElement.setAttribute("lang", L);
     localStorage.setItem("lang", L);
 
-    // update redirect
     setFormRedirect(L);
   } catch (err) {
     console.error("applyLang error:", err);
@@ -296,13 +294,10 @@ function setFormRedirect(lang) {
 
 // --- bootstrap: ensure the page actually initializes ---
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) Apply language once on load
   const urlLang = new URLSearchParams(location.search).get("lang");
   const saved   = localStorage.getItem("lang");
-  const browser = navigator.language || "en";
-  if (typeof applyLang === "function") {
-    applyLang(urlLang || saved || browser);
-  }
+  applyLang(urlLang || saved || (navigator.language || "en"));
+});
 
   // 2) Wire EN/FR buttons
   const enBtn = document.getElementById("lang-en");
@@ -320,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 
 
