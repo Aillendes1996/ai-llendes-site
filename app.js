@@ -266,3 +266,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// --- Formspree redirect ---
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("bookingForm");
+  if (form) {
+    form.addEventListener("submit", () => {
+      // let Formspree handle submission
+      setTimeout(() => {
+        window.location.href = "thank-you.html"; // your custom page
+      }, 500);
+    });
+  }
+});
+
