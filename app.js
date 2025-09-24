@@ -274,6 +274,13 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const data = new FormData(form);
 
+    // prevent double submit
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+}
+
     try {
       const resp = await fetch(form.action, {
         method: "POST",
@@ -288,3 +295,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
