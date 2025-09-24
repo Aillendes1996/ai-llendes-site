@@ -272,27 +272,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const data = new FormData(form);
 
-    // prevent double submit
-    const submitBtn = form.querySelector('button[type="submit"]');
-    if (submitBtn) {
+    // ✅ Honor HTML5 required/pattern validation
+  if (!form.reportValidity()) return;
+
+  const data = new FormData(form);
+
+  // prevent double submit
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending...";
-}
+  }
 
-    try {
-      const resp = await fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" }
-      });
-      // Success or not, we control the UX
-      window.location.href = "thank-you.html"; // use absolute URL if you prefer
-    } catch (_) {
-      // Even on network error, still take them to thank-you (you can show an error there if you want)
-      window.location.href = "thank-you.html";
-    }
-  });
+  try {
+    await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" }
+    });
+  } finally {
+    // Success or error, always redirect
+    window.location.href = "/thank-you.html";
+  }
 });
-
