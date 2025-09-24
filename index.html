@@ -246,7 +246,11 @@
               <div class="form">
                 <label><span data-i18n="form_name">Name</span><input type="text" name="name" required></label>
                 <label><span data-i18n="form_email">Email</span><input type="email" name="email" required></label>
-                <label><span data-i18n="form_phone">Phone</span><input type="tel" name="phone" required></label>
+                <label><span data-i18n="form_phone">Phone</span>
+                <input type="tel" name="phone" required
+                 pattern="[\d\s()+-]{7,}"
+                 title="Use at least 7 digits (you can include +, (), spaces, or dashes).">
+                </label>
                 <label><span data-i18n="form_company">Company</span><input type="text" name="company"></label>
                 <label class="full"><span data-i18n="form_notes">What are you looking to improve?</span>
                   <textarea name="notes" rows="4" placeholder="Speed-to-lead, show rates, pipeline…"></textarea>
@@ -287,6 +291,7 @@
   <script src="app.js?v=7" defer></script>
 </body>
 </html>
+
 
 
 
