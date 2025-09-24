@@ -228,6 +228,13 @@ function applyLang(lang) {
       else el.textContent = val;
     });
 
+    // 🔑 update redirect whenever language changes
+    setFormRedirect(lang);
+    } catch (err) {
+    console.error("applyLang error:", err);
+  }
+}
+
     // active state + document lang
     document.querySelectorAll(".lang-switch button").forEach((b) => b.classList.remove("active"));
     const btn = document.getElementById("lang-" + lang);
@@ -266,16 +273,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --- Formspree redirect ---
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("bookingForm");
-  if (form) {
-    form.addEventListener("submit", () => {
-      // let Formspree handle submission
-      setTimeout(() => {
-        window.location.href = "thank-you.html"; // your custom page
-      }, 500);
-    });
-  }
-});
+// Set Formspree _redirect based on language
+function setFormRedirect(lang) {
+  const redir = document.querySelector('form#bookingForm input[name="_redirect"]');
+  if (!redir) return;
+  // Use absolute URLs (Formspree prefers absolute redirects)
+  const base = window.location.origin;
+  redir.value = base + (lang === "fr" ? "/merci.html" : "/thank-you.html");
+}
+
+
 
